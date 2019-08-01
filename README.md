@@ -47,40 +47,38 @@ Neste modo, também há alguns pontos a serem considerados:
     - Ordenados de acordo com o grau de recomendação (mais recomendados primeiro, menos recomendados por último);
     - Caso o grau de recomendação for o mesmo, o critério de ordenação deve obedecer a ordem lexicográfica;
 
-## Dicas
+## Materiais e Dicas
 
-### Ordenação customizada em C++
+### Standard Template Library - C++
 
-Descrição #TODO
+Em C, a constante necessidade da criação de estruturas de dados (listas encadeadas feitas com ponteiros e structs, manipulação de vetores estaticamente alocados, etc) torna o desenvolvimento uma tarefa passível de diversos erros. Além disso, a constante reescrita de algoritmos clássicos (ordenações e buscas, principalmente) pode, rapidamente, se tornar uma prática desagradável.
 
-```c++
-sort(vector.begin(), vector.end(), [](int a, int b){
-    return a < b;
-})
-```
+Baseado, principalmente, no princípio do reuso, os desenvolvedores de linguagens populares buscam disponibilizar bibliotecas que empacotam diversas utilidades para que se evite as situações descritas. No caso do C++, temos a Standard Template Library (STL), que é um compilado de diversos algoritmos e estruturas de dados úteis para o desenvolvimento.
 
-### Algoritmo de recomendação
+Seguem, abaixo, algumas boas fontes para melhorar o entendimento do C++ usando STL:
+- [Explicação sobre a STL e o que ela implementa (em inglês)](https://www.geeksforgeeks.org/the-c-standard-template-library-stl/)
+- Material da disciplina Tópicos Especiais em Programação (Programação Para Competições, pelo prof. Edson Alves)
+    - [Slide - Introdução sobre C/C++](https://github.com/edsomjr/TEP/blob/master/Introducao/slides/RC-1/RC-1.pdf)
+    - [Slide - Uso de structs, classes e como realizar debug](https://github.com/edsomjr/TEP/blob/master/Introducao/slides/RC-2/RC-2.pdf)
+    - [Slide - Principais estruturas de dados presentes na STL](https://github.com/edsomjr/TEP/blob/master/Introducao/slides/RC-3/RC-3.pdf)
+    - [Slide - Busca e ordenação utilizando C e C++](https://github.com/edsomjr/TEP/blob/master/Introducao/slides/BO-4/BO-4.pdf)
+    - [Repositório completo da disciplina contendo todo o conteúdo ministrado](https://github.com/edsomjr/TEP)
+- [Guia sobre a função sort() em C++ (em inglês)](https://www.geeksforgeeks.org/sort-c-stl/)
 
-Descrição e imagens #TODO
-
-### Escrita e leitura em arquivo
-
-Descrição e code snippet #TODO
-
-### C++ Vector
-
-Descrição #TODO
+Um bom exemplo sobre as facilidades oferecidas pela STL é o ```vector```. Um dos grandes problemas dos arrays em C/C++ é a sua falta de dinamicidade. Caso um array de 3 posições for criado, ele nunca poderá armazenar mais do que três elementos. Sabemos que é comum a situação onde não é possível saber a quantidade exata de elementos a serem registrados. Para isso, o ```vector``` da STL nos permite inserir os elementos de forma dinâmica e, de forma transparente para o desenvolvedor, há a alocação de memória extra sempre que necessário. Por exemplo:
 
 ```c++
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 
 int main(){
-    std::vector<int> v;
+    std::vector<int> numeros; // Declaração de um vector que armazena ints
 
-    v.push_back(1); // [1]
-    v.push_back(2); // [1, 2]
+    numeros.push_back(2); // Inserção do int 2 no fim do vector -> [2]
+    numeros.push_back(1); // Inserção do int 1 no fim do vector -> [2, 1]
 
-    std::cout << v[1] << std::endl;
+    std::cout << numeros[0] << std::endl;
+    std::cout << numeros[1] << std::endl;
 
     return 0;
 }
@@ -88,23 +86,83 @@ int main(){
 Output:
 ```
 2
+1
 ```
 
-### Auto for loop (C++ 11)
-
-Descrição #TODO
+Outra grande vantagem do ```vector``` é a sua integração com outros algoritmos da STL. Ordenar um array torna-se uma tarefa simples com a função ```sort()```:
 
 ```c++
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
 
 int main(){
-    std::vector<int> v;
-    v.push_back(1);
-    v.push_back(2);
+    std::vector<int> numeros; // Declaração de um vector que armazena ints
+
+    numeros.push_back(2); // Inserção do int 2 no fim do vector -> [2]
+    numeros.push_back(1); // Inserção do int 1 no fim do vector -> [2, 1]
+
+    std::sort(numeros.begin(), numeros.end()); // Ordena-se do menor valor para o maior -> [1, 2]
+
+    std::cout << numeros[0] << std::endl;
+    std::cout << numeros[1] << std::endl;
+
+    return 0;
+}
+```
+Output:
+```
+1
+2
+```
+
+### Ordenação customizada (C++ 11)
+
+A função ```sort()``` permite que seja passada uma função de comparação como o terceiro parâmetro. Assim, pode-se modificar os critérios de ordenação de um ```vector```, por exemplo:
+
+```c++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+bool maior_menor(int A, int B){
+    return A > B;
+}
+
+bool menor_maior(int A, int B){
+    return A < B;
+}
+
+int main(){
+    std::vector<int> numeros = {1, 2};
+
+    // Ordena do menor para o maior (comportamento padrão)
+    std::sort(numeros.begin(), numeros.end(), menor_maior);
+
+    // Ordena do maior para o menor
+    std::sort(numeros.begin(), numeros.end(), maior_menor);
+
+    return 0;
+}
+```
+A função passada como parâmetro recebe, sempre, dois argumentos do mesmo tipo que o armazenado pela estrutura ordenada (```int```, neste caso) e retorna ```true``` (tipo ```bool```) sempre que o elemento na posição N está na posição correta quando comparado com o elemento na posição N+1 e ```false``` (tipo ```bool```) caso contrário.
+
+### Percorrendo um ```vector```
+
+Assim como em arrays em C, é possível percorrer um ```vector``` usando um ```for``` que incrementa uma variável índice e acessa cada posição da estrutura. Para saber até quando incrementar, devemos saber o tamanho máximo do ```vector```. Para isso, usamos o método ```.size()```, que retorna o tamanho atual:
+
+```c++
+#include <iostream>
+#include <vector>
+
+int main(){
+    std::vector<int> numeros;
+    numeros.push_back(1);
+    numeros.push_back(2);
 
     // Imprimindo todos os valores do vetor
-    for(auto &valor : v){
-        std::cout << valor << std::endl;
+    for(int i = 0; i < numeros.size(); i++){ // for(int i = 0; i < 2; i++)
+        std::cout << numeros[i] << std::endl;
     }
 }
 ```
@@ -113,3 +171,10 @@ Output:
 1
 2
 ```
+### Algoritmo de recomendação
+
+Descrição e imagens #TODO
+
+### Escrita e leitura em arquivo
+
+Descrição e code snippet #TODO
