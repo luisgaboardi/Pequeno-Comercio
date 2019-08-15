@@ -49,6 +49,6 @@ Neste modo, também há alguns pontos a serem considerados:
 
 ## Orientações
 
-Quando finalizado, o projeto deverá conter um arquivo, na raíz do repositório, contendo instruções de execução (comandos, menus, etc) e a lista de dependências (bibliotecas ou pacotes necessários para se executar o software).
+Quando finalizado, o projeto deverá conter um arquivo, na pasta `docs`, contendo instruções de execução (comandos, menus, etc) e a lista de dependências (bibliotecas ou pacotes necessários para se executar o software).
 
 Existe um material de apoio na [wiki do repositório](https://gitlab.com/oofga/eps/eps_2019_2/ep1/wikis/Home) contendo orientações técnicas relevantes para o desenvolvimento deste projeto.
