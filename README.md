@@ -18,7 +18,7 @@ Para colocar as ideias em prática, ela deve abandonar seu velho hábito de util
 ### Modo venda
 Em relação ao modo venda, deve-se observar os seguintes pontos:
 - Antes de cada venda, deve ser possível inserir os dados do cliente para identificar se ele é sócio ou não;
-- Caso o cliente não possuir cadastro, ele é feito antes da compra;
+- Caso o cliente não possua cadastro, ele é feito antes da compra;
 - A cada compra, deve ser possível colocar vários produtos no carrinho;
 - No fim da compra, devem ser exibidas na tela as seguintes informações:
     - Lista de produtos vendidos, a quantidade e seus respectivos valores;
@@ -30,10 +30,10 @@ Em relação ao modo venda, deve-se observar os seguintes pontos:
 Para evitar o recadastro de clientes, Victoria deseja que os dados de cadastro sejam salvos em arquivos. Assim, será possível acessar os dados mesmo que se encerre a execução do programa.
 
 ### Modo estoque
-Para manter o estoque do estabelecimento, deve ser possível cadastrar novos produtos (não haverá a necessidade de se deletar produtos, apenas de se atualizar sua quantidade). Além disso, para evitar o recadastro de produtos e categorias, os dados devem ser armazenados em arquivos.
+Para manter o estoque do estabelecimento, deve ser possível cadastrar novos produtos (não haverá a necessidade de se remover produtos, apenas de se atualizar sua quantidade). Além disso, para evitar o recadastro de produtos e categorias, os dados devem ser armazenados em arquivos.
 
 Aqui estão alguns aspectos importantes deste modo:
-- Há várias categorias de produtos existentes no estabelecimento e, sempre que possível, Victoria tenta trazer coisas novas (O número de categorias não é fixo mas, assim como no caso dos produtos, não será necessário deletar nenhuma categoria);
+- Há várias categorias de produtos existentes no estabelecimento e, sempre que possível, Victoria tenta trazer coisas novas (O número de categorias não é fixo mas, assim como no caso dos produtos, não será necessário remover nenhuma categoria);
 - Um produto pode pertencer a mais de uma categoria;
 
 ### Modo recomendação
@@ -41,11 +41,11 @@ Para listar os itens recomendados para cada cliente, Victoria pensou em uma solu
 
 Neste modo, também há alguns pontos a serem considerados:
 - Ao entrar no modo recomendação, deve ser possível inserir os dados do cliente para buscar os produtos recomendados exclusivamente;
-- Caso o cliente não possuir cadastro, uma mensagem de erro deve ser mostrada;
+- Caso o cliente não possua cadastro, uma mensagem de erro deve ser mostrada;
 - A lista de recomendações deve ter as seguintes características:
     - Até 10 produtos;
     - Ordenados de acordo com o grau de recomendação (mais recomendados primeiro, menos recomendados por último);
-    - Caso o grau de recomendação for o mesmo, o critério de ordenação deve obedecer a ordem lexicográfica;
+    - Caso o grau de recomendação seja o mesmo, o critério de ordenação deve obedecer à ordem lexicográfica;
 
 ## Orientações
 
