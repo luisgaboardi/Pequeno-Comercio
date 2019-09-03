@@ -1,10 +1,6 @@
 #ifndef PRODUTO_HPP_
 #define PRODUTO_HPP_
 
-#include <iostream>
-
-using namespace std;
-
 class Produto
 {
 	private:
