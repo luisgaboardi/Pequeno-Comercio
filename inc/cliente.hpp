@@ -1,4 +1,5 @@
 #include <vector>
+#include "pessoa.hpp"
 
 class Cliente : public Pessoa
 {
@@ -11,7 +12,7 @@ class Cliente : public Pessoa
 		Cliente();
 		~Cliente();
 		
-		bool get_trabalhando();
+		bool get_ativo();
 		void set_ativo(bool ativo);
 		
 		void imprime_dados();

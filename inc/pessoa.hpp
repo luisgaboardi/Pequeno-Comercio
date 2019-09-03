@@ -1,3 +1,6 @@
+#ifndef PESSOA_HPP_
+#define PESSOA_HPP_
+
 #include <iostream>
 
 using namespace std;
@@ -29,3 +32,5 @@ class Pessoa
 
 		void imprime_dados();
 };
+
+#endif
