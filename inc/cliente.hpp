@@ -1,3 +1,6 @@
+#ifndef CLIENTE_HPP_
+#define CLIENTE_HPP_
+
 #include <vector>
 #include "pessoa.hpp"
 
@@ -17,3 +20,5 @@ class Cliente : public Pessoa
 		
 		void imprime_dados();
 };
+
+#endif
