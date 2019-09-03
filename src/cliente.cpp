@@ -5,6 +5,11 @@ Cliente::Cliente()
 	set_ativo(false);
 }
 
+Cliente::Cliente(string nome, string cpf, string email, string telefone, string endereco, bool ativo) : Pessoa(nome, email, cpf, telefone, endereco)
+{
+	set_ativo(ativo);
+}
+
 Cliente::~Cliente(){}
 
 bool Cliente::get_ativo(){

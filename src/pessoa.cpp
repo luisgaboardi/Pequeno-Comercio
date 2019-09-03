@@ -9,6 +9,15 @@ Pessoa::Pessoa()
 	set_endereco("");
 }
 
+Pessoa::Pessoa(string nome, string email, string cpf, string telefone, string endereco)
+{
+	set_nome(nome);
+	set_email(email);
+	set_cpf(cpf);
+	set_telefone(telefone);
+	set_endereco(endereco);
+}
+
 Pessoa::~Pessoa(){
 }
 

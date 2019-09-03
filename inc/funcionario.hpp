@@ -8,6 +8,7 @@ class Funcionario : public Pessoa
 	
 	public:
 		Funcionario();
+		Funcionario(string nome, string cpf, string email, string telefone, string endereco, float salario, bool trabalhando);
 		~Funcionario();
 		
 		float get_salario();

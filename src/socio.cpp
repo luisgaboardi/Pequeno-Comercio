@@ -6,6 +6,13 @@ Socio::Socio()
 	this->desconto = 0.15f;
 }
 
+Socio::Socio(string nome, string cpf, string email, string telefone, string endereco, bool ativo, float fidelidade, float desconto) : Cliente(nome, email, cpf, telefone, endereco, ativo)
+{
+	set_fidelidade(fidelidade);
+	if(desconto >= 0.0)
+		this->desconto = desconto;
+}
+
 Socio::~Socio(){}
 		
 float Socio::get_fidelidade(){

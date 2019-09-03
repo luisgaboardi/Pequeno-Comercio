@@ -6,6 +6,12 @@ Funcionario::Funcionario()
 	set_trabalhando(false);
 }
 
+Funcionario::Funcionario(string nome, string cpf, string email, string telefone, string endereco, float salario, bool trabalhando) : Pessoa(nome, email, cpf, telefone, endereco)
+{
+	set_salario(salario);
+	set_trabalhando(trabalhando);
+}
+
 Funcionario::~Funcionario(){}
 
 float Funcionario::get_salario(){
@@ -13,8 +19,7 @@ float Funcionario::get_salario(){
 }
 void Funcionario::set_salario(float salario){
 	if(salario >= 0){
-		if(get_trabalhando())
-			this->salario = salario;
+		this->salario = salario;
 	}
 }
 

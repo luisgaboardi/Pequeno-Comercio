@@ -16,6 +16,7 @@ class Pessoa
 
 	public:
 		Pessoa();
+		Pessoa(string nome, string email, string cpf, string telefone, string endereco);
 		~Pessoa();
 
 		string get_nome();

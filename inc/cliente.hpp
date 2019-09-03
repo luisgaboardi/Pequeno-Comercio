@@ -13,6 +13,7 @@ class Cliente : public Pessoa
 	
 	public:
 		Cliente();
+		Cliente(string nome, string cpf, string email, string telefone, string endereco, bool ativo);
 		~Cliente();
 		
 		bool get_ativo();
