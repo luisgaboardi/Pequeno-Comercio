@@ -2,8 +2,8 @@
 
 Funcionario::Funcionario()
 {
-	this->salario = 0.0f;
-	this->trabalhando = false;
+	set_salario(0.0f);
+	set_trabalhando(false);
 }
 
 Funcionario::~Funcionario(){}
@@ -12,7 +12,10 @@ float Funcionario::get_salario(){
 	return salario;
 }
 void Funcionario::set_salario(float salario){
-	this->salario = salario;
+	if(salario >= 0){
+		if(get_trabalhando())
+			this->salario = salario;
+	}
 }
 
 bool Funcionario::get_trabalhando(){

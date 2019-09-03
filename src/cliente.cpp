@@ -2,7 +2,7 @@
 
 Cliente::Cliente()
 {
-	this->ativo = false;
+	set_ativo(false);
 }
 
 Cliente::~Cliente(){}

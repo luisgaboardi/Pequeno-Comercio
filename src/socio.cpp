@@ -2,7 +2,7 @@
 
 Socio::Socio()
 {
-	this->fidelidade = 0;
+	set_fidelidade(0.0);
 	this->desconto = 0.15f;
 }
 
@@ -12,7 +12,8 @@ float Socio::get_fidelidade(){
 	return fidelidade;
 }
 void Socio::set_fidelidade(float fidelidade){
-	this->fidelidade = fidelidade;
+	if(fidelidade >= 0 && fidelidade >= this->fidelidade)
+		this->fidelidade = fidelidade;
 }
 
 float Socio::get_desconto(){

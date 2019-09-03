@@ -2,11 +2,11 @@
 
 Pessoa::Pessoa()
 {
-	this->nome = "";
-	this->email = "";
-	this->cpf = "";
-	this->telefone = "";
-	this->endereco = "";
+	set_nome("");
+	set_email("");
+	set_cpf("");
+	set_telefone("");
+	set_endereco("");
 }
 
 Pessoa::~Pessoa(){
@@ -16,14 +16,16 @@ string Pessoa::get_nome(){
 	return this->nome;
 }
 void Pessoa::set_nome(string nome){
-	this->nome = nome;
+	if(nome.size() < 50)
+		this->nome = nome;
 }
 
 string Pessoa::get_cpf(){
 	return this->cpf;
 }
 void Pessoa::set_cpf(string cpf){
-	this->cpf = cpf;
+	if(cpf.size() < 12)
+		this->cpf = cpf;
 }
 
 string Pessoa::get_email(){
@@ -37,7 +39,8 @@ string Pessoa::get_telefone(){
 	return this->telefone;
 }
 void Pessoa::set_telefone(string telefone){
-	this->telefone = telefone;
+	if(telefone.size() < 10)
+		this->telefone = telefone;
 }
 
 string Pessoa::get_endereco(){
