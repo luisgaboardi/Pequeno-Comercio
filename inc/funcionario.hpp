@@ -1,3 +1,6 @@
+#ifndef FUNCIONARIO_HPP_
+#define FUNCIONARIO_HPP_
+
 #include "pessoa.hpp"
 
 class Funcionario : public Pessoa
@@ -19,3 +22,5 @@ class Funcionario : public Pessoa
 		
 		void imprime_dados();
 };
+
+#endif

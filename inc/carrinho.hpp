@@ -1,10 +1,13 @@
+#ifndef CARRINHO_HPP_
+#define CARRINHO_HPP_
+
 #include "produto.hpp"
 
 class Carrinho
 {
 	private:
 		float valorTotal;
-		//vector< pair<Produto, int> >
+		vector< pair<Produto*, int> > item;
 	
 	public:
 		Carrinho();
@@ -15,3 +18,5 @@ class Carrinho
 		
 		void imprime_dados();
 };
+
+#endif

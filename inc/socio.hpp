@@ -1,3 +1,6 @@
+#ifndef SOCIO_HPP_
+#define SOCIO_HPP_
+
 #include "cliente.hpp"
 
 class Socio : public Cliente
@@ -18,3 +21,5 @@ class Socio : public Cliente
 		
 		void imprime_dados();
 };
+
+#endif

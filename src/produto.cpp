@@ -1,7 +1,5 @@
 #include "produto.hpp"
 
-using namespace std;
-
 Produto::Produto()
 {
 	set_nome("");
@@ -40,6 +38,16 @@ float Produto::get_valor(){
 void Produto::set_valor(float valor){
 	if(valor > 0.0)
 		this->valor = valor;
+}
+
+bool Produto::noEstoque()
+{
+	if(get_quantidade() > 0){
+		return true;
+	}
+	else{
+		return false;
+	}
 }
 
 void Produto::imprime_dados()

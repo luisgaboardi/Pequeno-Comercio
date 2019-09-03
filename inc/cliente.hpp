@@ -3,13 +3,15 @@
 
 #include <vector>
 #include "pessoa.hpp"
+#include "carrinho.hpp"
+#include "produto.hpp"
 
 class Cliente : public Pessoa
 {
 	private:
-		//vector<Produto> historico;
+		vector<Produto*> historico;
 		bool ativo;
-		// Carrinho carrinho;
+		Carrinho *carrinho;
 	
 	public:
 		Cliente();

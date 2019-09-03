@@ -2,7 +2,7 @@
 
 Carrinho::Carrinho()
 {
-	set_valorTotal("");
+	set_valorTotal(0.0f);
 }
 
 Carrinho::~Carrinho(){}
