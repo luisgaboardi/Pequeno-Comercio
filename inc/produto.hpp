@@ -1,6 +1,10 @@
 #ifndef PRODUTO_HPP_
 #define PRODUTO_HPP_
 
+#include <iostream>
+
+using namespace std;
+
 class Produto
 {
 	private:
@@ -19,12 +23,13 @@ class Produto
 		void set_nome(string nome);
 		
 		int get_quantidade();
-		void set_quantidade();
+		void set_quantidade(int quantidade);
 		
 		float get_valor();
 		void set_valor(float valor);
+		
+		void imprime_dados();
 };
-
 
 
 #endif
