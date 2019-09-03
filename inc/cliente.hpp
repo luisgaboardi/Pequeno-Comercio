@@ -1,7 +1,6 @@
 #ifndef CLIENTE_HPP_
 #define CLIENTE_HPP_
 
-#include <vector>
 #include "pessoa.hpp"
 #include "carrinho.hpp"
 #include "produto.hpp"

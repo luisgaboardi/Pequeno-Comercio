@@ -2,6 +2,7 @@
 #define PESSOA_HPP_
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
