@@ -1,4 +1,5 @@
-#include <funcionario.hpp>
+#include "funcionario.hpp"
+#include "cliente.hpp"
 
 int main()
 {
