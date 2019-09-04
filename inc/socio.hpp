@@ -11,7 +11,7 @@ class Socio : public Cliente
 	
 	public:
 		Socio();
-		Socio(string nome, string cpf, string email, string telefone, string endereco, bool ativo, float fidelidade, float desconto);
+		Socio(string nome, string cpf, string email, float fidelidade, float desconto);
 		~Socio();
 		
 		float get_fidelidade();

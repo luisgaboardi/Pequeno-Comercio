@@ -6,7 +6,7 @@ Socio::Socio()
 	this->desconto = 0.15f;
 }
 
-Socio::Socio(string nome, string cpf, string email, string telefone, string endereco, bool ativo, float fidelidade, float desconto) : Cliente(nome, email, cpf, telefone, endereco, ativo)
+Socio::Socio(string nome, string cpf, string email, float fidelidade, float desconto) : Cliente(nome, cpf, email)
 {
 	set_fidelidade(fidelidade);
 	if(desconto >= 0.0)
@@ -32,8 +32,5 @@ void Socio::imprime_dados()
 	cout << "Nome: " << get_nome() << endl;
 	cout << "CPF: " << get_cpf() << endl;
 	cout << "Email: " << get_email() << endl;
-	cout << "Telefone: " << get_telefone() << endl;
-	cout << "Endereço: " << get_endereco() << endl;
-	cout << "Ativo: " << get_ativo() << endl;
 	cout << "Fidelidade: " << get_fidelidade() << endl << endl;
 }

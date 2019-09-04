@@ -1,7 +1,8 @@
 #ifndef LOJA_HPP_
 #define LOJA_HPP_
 
-#include "pessoa.hpp"
+#include "funcionario.hpp"
+#include "cliente.hpp"
 #include "produto.hpp"
 
 class Loja
@@ -14,7 +15,8 @@ class Loja
 		~Loja();
 	
 		vector<Produto*> produtos;
-		vector<Pessoa*> envolvidos;
+		vector<Funcionario*> funcionarios;
+		vector<Cliente*> clientes;
 		
 		float get_valorNoCaixa();
 		void set_valorNoCaixa(float valorNoCaixa);
