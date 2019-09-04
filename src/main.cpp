@@ -11,7 +11,7 @@
 using namespace std;
 
 void identifica_funcionario(Loja *);
-void menu();
+void menu(Loja *);
 
 int main()
 {
@@ -24,11 +24,10 @@ int main()
 	cout << "Bem-vindo(a)!" << endl << endl;
 	
 	Loja *loja = new Loja();
-	Funcionario *f1 = new Funcionario("Pedro", "121313", "luisgaboardi");
-	loja->funcionarios.push_back(f1);
+	
 	// Login ou cadastro de funcionário
 	identifica_funcionario(loja);
-	menu();
+	menu(loja);
 	return 0;
 }
 
@@ -104,6 +103,6 @@ void identifica_funcionario(Loja *loja)
 	}
 }
 
-void menu()
+void menu(Loja *loja)
 {
 }
