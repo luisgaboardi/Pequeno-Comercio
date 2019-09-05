@@ -23,9 +23,6 @@ int main()
 	cout << "Iniciando o sistema\nAguarde..." << endl;
 	sleep(3);
 	
-	system("clear");
-	cout << "Bem-vindo(a)!" << endl << endl;
-	
 	Loja *loja = new Loja();
 	
 	// Login ou cadastro de funcionário
@@ -137,17 +134,18 @@ void menu(Loja *loja)
 	
 }
 
-void modoVenda(Loja *)
-{
-	system("clear");
-	cout << "Oi" << endl;
-}
-void modoRecomendacao(Loja *)
+void modoVenda(Loja *loja)
 {
 	system("clear");
 	cout << "Olá" << endl;
 }
-void modoEstoque(Loja *)
+
+void modoRecomendacao(Loja *loja)
+{
+	system("clear");
+	cout << "Olá" << endl;
+}
+void modoEstoque(Loja *loja)
 {
 	system("clear");
 	cout << "Hello" << endl;
