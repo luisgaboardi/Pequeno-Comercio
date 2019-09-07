@@ -57,10 +57,10 @@ void identifica_funcionario(Loja *loja)
 		
 		system("clear");
 		
-		for(unsigned int i = 0; i < loja->funcionarios.size(); ++i)
+		for(Funcionario *f: loja->funcionarios)
 		{
-			if(cpfFunc == loja->funcionarios[i]->get_cpf()){
-				cout << "Bem vindo(a), " << loja->funcionarios[i]->get_nome() << endl << endl;
+			if(cpfFunc == f->get_cpf()){
+				cout << "Bem vindo(a), " << f->get_nome() << endl << endl;
 				cout << "Pressione enter para continuar...";
 				getchar();
 				getchar();
@@ -91,9 +91,8 @@ void identifica_funcionario(Loja *loja)
 		cin >> cpfFunc;
 		cout << "Email: ";
 		cin >> emailFunc;
-		
-		Funcionario *f2 = new Funcionario(nomeFunc, cpfFunc, emailFunc);
-		loja->funcionarios.push_back(f2);
+
+		loja->funcionarios.push_back(new Funcionario(nomeFunc, cpfFunc, emailFunc));
 
 		system("clear");
 		cout << "Funcionário cadastrado com sucesso" << endl << endl;
