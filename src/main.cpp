@@ -94,9 +94,8 @@ void identifica_funcionario(Loja *loja)
 
 		loja->funcionarios.push_back(new Funcionario(nomeFunc, cpfFunc, emailFunc));
 
-		system("clear");
-		cout << "Funcionário cadastrado com sucesso" << endl << endl;
-		loja->funcionarios[loja->funcionarios.size()-1]->imprime_dados();
+		cout << endl << "Funcionário cadastrado com sucesso" << endl;
+		cout << endl << "Pressione enter para voltar...";
 		getchar();
 		getchar();
 		identifica_funcionario(loja);
@@ -144,8 +143,92 @@ void modoRecomendacao(Loja *loja)
 	system("clear");
 	cout << "Olá" << endl;
 }
+
 void modoEstoque(Loja *loja)
 {
-	system("clear");
-	cout << "Hello" << endl;
+	string escolha, nomeP, categoriaP;
+	int qtdP;
+	float valorP;
+	int flag = 0, count = 1;
+	
+	do{
+		system("clear");
+		cout << "  [Estoque]" << endl << endl;
+		cout << "(1) Adicionar um produto" << endl;
+		cout << "(2) Produtos em estoque" << endl;
+		cout << "(0) Voltar\n\n>> ";
+		
+		cin >> escolha;
+	
+	}while(escolha != "1" && escolha != "2" && escolha != "0");
+	
+	if(escolha == "1"){
+		
+		system("clear");
+		cout << "  [Estoque]" << endl << endl;
+		
+		Produto *p1 = new Produto();
+
+		cout << "Nome: ";
+		cin >> nomeP;
+		p1->set_nome(nomeP);
+		
+		do{
+			cout << "Categoria " << count << ": ";
+			cin >> categoriaP;
+			p1->set_categoria(categoriaP);
+			
+			cout << endl << "O produto tem outra categoria? (s/n)\n>> ";
+			cin >> escolha;
+			
+			if(escolha != "s"){
+				flag = 1;
+			}
+			count++;
+			system("clear");
+
+		} while(flag == 0);
+		
+		cout << "Quantidade: ";
+		cin >> qtdP;
+		p1->set_quantidade(qtdP);
+		
+		cout << "Valor unitário: ";
+		cin >> valorP;
+		p1->set_valor(valorP);
+		
+		loja->produtos.push_back(p1);
+		
+		system("clear");
+		
+		loja->produtos[loja->produtos.size()-1]->imprime_dados();
+		
+		cout << endl << "Pressione enter para voltar ao menu...";
+		getchar();
+		getchar();
+		
+	} else if(escolha == "2"){
+		system("clear");
+		cout << "[Estoque]" << endl << endl;
+		
+		if(loja->produtos.size() == 0)
+		{
+			cout << "O estoque está vazio!" << endl;
+		}
+		else
+		{
+			for(Produto *p:loja->produtos)
+			{
+				p->imprime_dados();
+			}
+		}
+		
+		cout << endl << "Pressione enter para voltar ao menu...";
+		getchar();
+		getchar();
+		
+	}
+	
+	menu(loja);
+	
 }

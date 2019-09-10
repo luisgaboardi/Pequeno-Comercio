@@ -19,7 +19,7 @@ class Socio : public Cliente
 		
 		float get_desconto();
 		
-		void imprime_dados();
+		void virtual imprime_dados();
 };
 
 #endif

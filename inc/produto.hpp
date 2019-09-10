@@ -19,12 +19,12 @@ class Produto
 		Produto(string nome, int quantidade, float valor);
 		
 		~Produto();
-		
+				
 		string get_nome();
 		void set_nome(string nome);
 		
 		vector<string> get_categoria();
-		void set_categoria(vector<string>);
+		void set_categoria(string categoria);
 		
 		int get_quantidade();
 		void set_quantidade(int quantidade);

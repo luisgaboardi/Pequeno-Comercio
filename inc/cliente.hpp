@@ -16,7 +16,7 @@ class Cliente : public Pessoa
 		Cliente(string nome, string cpf, string email);
 		~Cliente();
 		
-		void imprime_dados();
+		void virtual imprime_dados();
 };
 
 #endif

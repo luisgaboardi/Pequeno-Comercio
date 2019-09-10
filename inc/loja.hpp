@@ -9,11 +9,11 @@ class Loja
 {
 	private:
 		float valorNoCaixa;
-	
+		
 	public:
 		Loja();
 		~Loja();
-	
+		
 		vector<Produto*> produtos;
 		vector<Funcionario*> funcionarios;
 		vector<Cliente*> clientes;

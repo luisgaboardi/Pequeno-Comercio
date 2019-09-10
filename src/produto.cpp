@@ -23,6 +23,15 @@ void Produto::set_nome(string nome){
 	if(nome.size() < 30)
 		this->nome = nome;
 }
+
+vector<string> Produto::get_categoria(){
+	return categoria;
+}
+
+void Produto::set_categoria(string categoria){
+	if(categoria != "")
+		this->categoria.push_back(categoria);
+}
 		
 int Produto::get_quantidade(){
 	return quantidade;
@@ -53,6 +62,14 @@ bool Produto::noEstoque()
 void Produto::imprime_dados()
 {
 	cout << "Nome: " << get_nome() << endl;
-	cout << "Quantidade: " << get_quantidade() << endl;
-	cout << "Valor Unitário: " << get_valor() << endl << endl;
+	cout << "Categoria(s): ";
+	for(unsigned int i = 0; i < get_categoria().size(); ++i)
+	{
+		cout << get_categoria()[i];
+		if(i != get_categoria().size() - 1)
+			cout << ", ";
+	}
+	cout << endl << "Quantidade: " << get_quantidade() << endl;
+	cout << "Valor Unitário: " << get_valor() << endl;
+	cout << "-----------------------------" << endl;
 }
