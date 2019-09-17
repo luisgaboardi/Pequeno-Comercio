@@ -1,6 +1,5 @@
 #include "funcionario.hpp"
 #include "cliente.hpp"
-#include "socio.hpp"
 #include "produto.hpp"
 #include "loja.hpp"
 
@@ -57,7 +56,7 @@ void identifica_funcionario(Loja *loja)
 		
 		system("clear");
 		
-		for(Pessoa *f: loja->pessoas)
+		for(Funcionario *f: loja->funcionarios)
 		{
 			if(cpfFunc == f->get_cpf()){
 				cout << "Bem vindo(a), " << f->get_nome() << endl << endl;
@@ -92,7 +91,7 @@ void identifica_funcionario(Loja *loja)
 		cout << "Email: ";
 		cin >> emailFunc;
 
-		loja->pessoas.push_back(new Funcionario(nomeFunc, cpfFunc, emailFunc));
+		loja->funcionarios.push_back(new Funcionario(nomeFunc, cpfFunc, emailFunc));
 
 		cout << endl << "Funcionário cadastrado com sucesso" << endl;
 		cout << endl << "Pressione enter para voltar...";

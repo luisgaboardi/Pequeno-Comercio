@@ -10,13 +10,17 @@ class Cliente : public Pessoa
 	private:
 		vector<Produto*> historico;
 		Carrinho *carrinho;
+		bool socio;
 	
 	public:
 		Cliente();
-		Cliente(string nome, string cpf, string email);
+		Cliente(string nome, string cpf, string email, bool socio);
 		~Cliente();
 		
-		void virtual imprime_dados();
+		bool get_socio();
+		void set_socio(bool socio);
+		
+		void imprime_dados();
 };
 
 #endif

@@ -26,7 +26,7 @@ class Pessoa
 		void set_email(string email);
 		void set_cpf(string cpf);
 
-		void imprime_dados();
+		virtual void imprime_dados();
 };
 
 #endif

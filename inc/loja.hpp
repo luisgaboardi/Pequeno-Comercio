@@ -15,7 +15,8 @@ class Loja
 		~Loja();
 		
 		vector<Produto*> produtos;
-		vector<Pessoa*> pessoas;
+		vector<Funcionario*> funcionarios;
+		vector<Cliente*> clientes;
 		
 		float get_valorNoCaixa();
 		void set_valorNoCaixa(float valorNoCaixa);
