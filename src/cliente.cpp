@@ -21,4 +21,5 @@ void Cliente::imprime_dados()
 	cout << "CPF: " << get_cpf() << endl;
 	cout << "Email: " << get_email() << endl;
 	cout << "Sócio: " << get_socio() << endl;
+	cout << "-----------------------" << endl;
 }

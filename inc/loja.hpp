@@ -20,6 +20,9 @@ class Loja
 		
 		float get_valorNoCaixa();
 		void set_valorNoCaixa(float valorNoCaixa);
+		
+		int confere_cliente();
+		void cadastrar_cliente();
 };
 
 

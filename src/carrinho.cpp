@@ -17,4 +17,22 @@ void Carrinho::set_valorTotal(float valorTotal){
 		
 void Carrinho::imprime_dados()
 {
+	if(!item.empty())
+	{
+		cout << "[Carrinho]" << endl << endl;
+		for(pair<Produto*, int> p : item)
+		{
+			cout << "Nome: " << p.first->get_nome() << endl;
+			cout << "Categoria(s): ";
+			for(unsigned int i = 0; i < p.first->get_categoria().size(); ++i)
+			{
+				cout << p.first->get_categoria()[i];
+				if(i != p.first->get_categoria().size() - 1)
+					cout << ", ";
+			}
+			cout << endl << "Quantidade: " << p.second << endl;
+			cout << "Valor: R$ " << p.second * p.first->get_valor() << endl;
+			cout << "-----------------------------" << endl;
+		}
+	}
 }

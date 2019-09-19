@@ -139,7 +139,38 @@ void menu(Loja *loja)
 void modoVenda(Loja *loja)
 {
 	system("clear");
-	cout << "[Venda]" << endl << endl;
+	cout << "Lista de Clientes" << endl;
+	
+	for(Cliente *c : loja->clientes)
+	{
+		c->imprime_dados();
+	}
+	
+	if(loja->confere_cliente())
+	{
+		if(loja->produtos.size() == 0)
+		{
+			cout << "O estoque está vazio!" << endl;
+		}
+		else
+		{
+			cout << "[Venda]" << endl << endl;
+			cout << "Produtos disponíveis:" << endl << endl;
+			for(Produto *p:loja->produtos)
+			{
+				p->imprime_dados();
+			}
+			cout << endl << "Aperte enter para prosseguir com a compra" << endl;
+			getchar();
+			getchar();
+		}
+	} else {
+		loja->cadastrar_cliente();
+	}
+	
+	menu(loja);
+	
+	
 }
 
 void modoRecomendacao(Loja *loja)
@@ -204,6 +235,7 @@ void modoEstoque(Loja *loja)
 		loja->produtos.push_back(p1);
 		
 		system("clear");
+		cout << "[Estoque]\n\nProduto cadastrado:" << endl << endl;
 		
 		loja->produtos[loja->produtos.size()-1]->imprime_dados();
 		
