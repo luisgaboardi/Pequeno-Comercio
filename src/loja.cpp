@@ -31,7 +31,6 @@ int Loja::confere_cliente()
 		if(cpf == c->get_cpf())
 			return 1;
 	}
-	
 	return 0;
 }
 
