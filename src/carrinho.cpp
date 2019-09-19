@@ -10,6 +10,7 @@ Carrinho::~Carrinho(){}
 float Carrinho::get_valorTotal(){
 	return valorTotal;
 }
+
 void Carrinho::set_valorTotal(float valorTotal){
 	if(valorTotal > 0.0)
 		this->valorTotal = valorTotal;
