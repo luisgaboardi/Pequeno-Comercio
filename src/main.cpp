@@ -139,12 +139,6 @@ void menu(Loja *loja)
 void modoVenda(Loja *loja)
 {
 	system("clear");
-	cout << "Lista de Clientes" << endl;
-	
-	for(Cliente *c : loja->clientes)
-	{
-		c->imprime_dados();
-	}
 	
 	if(loja->confere_cliente())
 	{
