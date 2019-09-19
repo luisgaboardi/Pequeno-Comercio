@@ -164,6 +164,7 @@ void modoVenda(Loja *loja)
 			getchar();
 			getchar();
 		}
+		
 	} else {
 		loja->cadastrar_cliente();
 	}
