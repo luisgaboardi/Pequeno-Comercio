@@ -33,7 +33,7 @@ int main()
 void identifica_funcionario(Loja *loja)
 {
 	string escolha;
-	string cpfFunc;
+	string cpfFunc, senhaFunc;
 	int flag = 0;
 	
 	do{
@@ -53,13 +53,16 @@ void identifica_funcionario(Loja *loja)
 		
 		cout << "CPF: ";
 		cin >> cpfFunc;
+		cout << "Senha: ";
+		cin >> senhaFunc;
 		
 		system("clear");
 		
 		for(Funcionario *f: loja->funcionarios)
 		{
-			if(cpfFunc == f->get_cpf()){
+			if(cpfFunc == f->get_cpf() && senhaFunc == f->get_senha()){
 				cout << "Bem vindo(a), " << f->get_nome() << endl << endl;
+				f->imprime_dados();
 				cout << "Pressione enter para continuar...";
 				getchar();
 				getchar();
@@ -90,8 +93,10 @@ void identifica_funcionario(Loja *loja)
 		cin >> cpfFunc;
 		cout << "Email: ";
 		cin >> emailFunc;
+		cout << "Senha: ";
+		cin >> senhaFunc;
 
-		loja->funcionarios.push_back(new Funcionario(nomeFunc, cpfFunc, emailFunc));
+		loja->funcionarios.push_back(new Funcionario(nomeFunc, cpfFunc, emailFunc, senhaFunc));
 
 		cout << endl << "Funcionário cadastrado com sucesso" << endl;
 		cout << endl << "Pressione enter para voltar...";
@@ -134,7 +139,7 @@ void menu(Loja *loja)
 void modoVenda(Loja *loja)
 {
 	system("clear");
-	cout << "Olá" << endl;
+	cout << "[Venda]" << endl << endl;
 }
 
 void modoRecomendacao(Loja *loja)
