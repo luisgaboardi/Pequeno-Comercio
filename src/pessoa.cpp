@@ -40,9 +40,4 @@ void Pessoa::set_email(string email){
 	this->email = email;
 }
 
-void Pessoa::imprime_dados(){
-	cout << "Nome: " << get_nome() << endl;
-	cout << "CPF: " << get_cpf() << endl;
-	cout << "Email: " << get_email() << endl;
-}
-
+void Pessoa::imprime_dados(){}

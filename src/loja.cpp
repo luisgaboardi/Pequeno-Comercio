@@ -3,7 +3,7 @@
 #include <vector>
 #include <stdlib.h>
 
-Loja::Loja(){}
+Loja::Loja() : valorNoCaixa(1350.57){}
 
 Loja::~Loja(){}
 

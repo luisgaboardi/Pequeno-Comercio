@@ -23,9 +23,11 @@ int main()
 	
 	Loja *loja = new Loja();
 	
-	// Login ou cadastro de funcionário
 	loja->identifica_funcionario();
 	menu(loja);
+	
+	delete loja;
+	
 	return 0;
 }
 
@@ -39,6 +41,8 @@ void menu(Loja *loja)
 		cout << "(1) Venda" << endl;
 		cout << "(2) Recomendação" << endl;
 		cout << "(3) Estoque" << endl;
+		// Lista de Clientes
+		// Lista de Funcionários
 		cout << "(0) Sair\n\n>> ";
 		
 		cin >> entrada;
