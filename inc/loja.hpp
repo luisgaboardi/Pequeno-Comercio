@@ -21,6 +21,7 @@ class Loja
 		float get_valorNoCaixa();
 		void set_valorNoCaixa(float valorNoCaixa);
 		
+		void identifica_funcionario();
 		int confere_cliente();
 		void cadastrar_cliente();
 };
