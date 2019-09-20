@@ -73,3 +73,10 @@ void Produto::imprime_dados()
 	cout << "Valor Unitário: R$ " << get_valor() << endl;
 	cout << "-----------------------------" << endl;
 }
+
+void Produto::imprime_dados(int x)
+{
+	cout << "Nome: " << get_nome() << endl;
+	cout << "Valor Unitário: R$ " << get_valor() << endl;
+	cout << "-----------------------------" << endl;
+}

@@ -19,6 +19,7 @@ class Cliente : public Pessoa
 		
 		bool get_socio();
 		void set_socio(bool socio);
+		string eh_socio();
 		
 		void imprime_dados();
 };

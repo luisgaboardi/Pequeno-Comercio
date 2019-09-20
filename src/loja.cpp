@@ -92,9 +92,11 @@ void Loja::identifica_funcionario()
 }
 
 
-int Loja::confere_cliente()
+Cliente* Loja::confere_cliente()
 {
 	string cpf;
+	system("clear");
+
 	
 	cout << "[Cliente]" << endl << endl;
 	
@@ -106,9 +108,9 @@ int Loja::confere_cliente()
 	for(Cliente *c : clientes)
 	{
 		if(cpf == c->get_cpf())
-			return 1;
+			return c;
 	}
-	return 0;
+	return NULL;
 }
 
 void Loja::cadastrar_cliente()
@@ -116,6 +118,9 @@ void Loja::cadastrar_cliente()
 	string nome, cpf, email;
 	bool socio = false;
 	string escolha;
+	
+	system("clear");
+
 	
 	cout << "[Cadastro]" << endl << endl;
 	

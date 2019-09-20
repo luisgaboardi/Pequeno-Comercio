@@ -64,21 +64,31 @@ void menu(Loja *loja)
 
 void modoVenda(Loja *loja)
 {
+	string escolha;
+	Cliente *c;
 	system("clear");
 	
-	if(loja->confere_cliente())
+	c = loja->confere_cliente();
+	
+	if(c)
 	{
 		if(loja->produtos.size() == 0)
 		{
 			cout << "O estoque está vazio!" << endl;
+			cout << endl << "Aperte enter para retornar ao menu" << endl;
+			getchar();
+			getchar();
 		}
 		else
 		{
 			cout << "[Venda]" << endl << endl;
+			cout << "Cliente: " << c->get_nome() << endl;
+			cout << "Sócio: " << c->eh_socio() << endl << endl;
 			cout << "Produtos disponíveis:" << endl << endl;
+			
 			for(Produto *p:loja->produtos)
 			{
-				p->imprime_dados();
+				p->imprime_dados(0);
 			}
 			cout << endl << "Aperte enter para prosseguir com a compra" << endl;
 			getchar();
@@ -86,8 +96,20 @@ void modoVenda(Loja *loja)
 		}
 		
 	} else {
-		loja->cadastrar_cliente();
+		cout << "[Registro]" << endl << endl;
+		cout << "Cliente não encontrado." << endl;
+		cout << " (1) Cadastrar cliente" << endl;
+		cout << " (2) Voltar\n\n>> ";
+		cin >> escolha;
+		
+		if(escolha == "1")
+			loja->cadastrar_cliente();
+		else
+			menu(loja);
 	}
+	
+	
+	
 	
 	menu(loja);
 	

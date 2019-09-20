@@ -22,7 +22,7 @@ class Loja
 		void set_valorNoCaixa(float valorNoCaixa);
 		
 		void identifica_funcionario();
-		int confere_cliente();
+		Cliente *confere_cliente();
 		void cadastrar_cliente();
 };
 
