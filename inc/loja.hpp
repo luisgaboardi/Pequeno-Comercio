@@ -8,7 +8,6 @@
 class Loja
 {
 	private:
-		float valorNoCaixa;
 		
 	public:
 		Loja();
@@ -18,14 +17,12 @@ class Loja
 		vector<Funcionario*> funcionarios;
 		vector<Cliente*> clientes;
 		
-		float get_valorNoCaixa();
-		void set_valorNoCaixa(float valorNoCaixa);
-		
 		void identifica_funcionario();
 		Cliente *confere_cliente();
 		void cadastrar_cliente();
 		void imprime_clientes();
 		void imprime_funcionarios();
+		Produto* checa_produto(string nome);
 };
 
 

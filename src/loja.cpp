@@ -3,17 +3,9 @@
 #include <vector>
 #include <stdlib.h>
 
-Loja::Loja() : valorNoCaixa(1350.57){}
+Loja::Loja(){}
 
 Loja::~Loja(){}
-
-float Loja::get_valorNoCaixa(){
-	return valorNoCaixa;
-}
-void Loja::set_valorNoCaixa(float valorNoCaixa){
-	if(valorNoCaixa >= 0.0 && valorNoCaixa >= this->valorNoCaixa)
-		this->valorNoCaixa = valorNoCaixa;
-}
 
 void Loja::identifica_funcionario()
 {
@@ -48,7 +40,7 @@ void Loja::identifica_funcionario()
 			if(cpfFunc == f->get_cpf() && senhaFunc == f->get_senha())
 			{
 				cout << "Bem vindo(a), " << f->get_nome() << endl << endl;
-				f->imprime_dados();
+				//f->imprime_dados();
 				cout << "Pressione enter para continuar...";
 				getchar();
 				getchar();
@@ -173,4 +165,16 @@ void Loja::imprime_funcionarios()
 	cout << endl << "Pressione enter para voltar...";
 	getchar();
 	getchar();
+}
+
+Produto* Loja::checa_produto(string nome)
+{
+	for(Produto *p : produtos)
+	{
+		if(nome == p->get_nome() && p->noEstoque()){
+			return p;
+		}
+	}
+	//cout << "Não existe um produto com esse nome." << endl;
+	return NULL;
 }

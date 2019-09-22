@@ -7,17 +7,19 @@ class Carrinho
 {
 	private:
 		float valorTotal;
-		vector< pair<Produto*, int> > item; // Produto no carrinho e sua quantidade
 	
 	public:
+
+		vector< pair<Produto*, int> > item; // Produto no carrinho e sua quantidade
+
 		Carrinho();
 		~Carrinho();
 		
 		float get_valorTotal();
 		void set_valorTotal(float valorTotal);
-		
+
+		void add_item(Produto *nome, int qtd, vector<Produto*> lista);
 		void imprime_dados();
-		//void add_item();
 };
 
 #endif

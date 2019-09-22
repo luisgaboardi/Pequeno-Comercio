@@ -1,7 +1,10 @@
-#include "funcionario.hpp"
+#include "carrinho.hpp"
 #include "cliente.hpp"
-#include "produto.hpp"
 #include "loja.hpp"
+#include "funcionario.hpp"
+#include "produto.hpp"
+
+
 
 #include <iostream>
 #include <stdlib.h>
@@ -72,40 +75,73 @@ void modoVenda(Loja *loja)
 {
 	string escolha;
 	Cliente *c;
+	pair<Produto*, int> compra;
+	string nome;
+	Produto *prod;
+	int qtd;
+	float valorEntregue;
 	system("clear");
 	
 	c = loja->confere_cliente();
 	
 	if(c)
 	{
-		if(loja->produtos.size() == 0)
+		if(loja->produtos.empty())
 		{
 			cout << "O estoque está vazio!" << endl;
-			cout << endl << "Aperte enter para retornar ao menu" << endl;
+			cout << endl << "Aperte enter para retornar ao menu...";
 			getchar();
 			getchar();
 		}
 		else
 		{
-			cout << "[Venda]" << endl << endl;
-			cout << "Cliente: " << c->get_nome() << endl;
-			cout << "Sócio: " << c->eh_socio() << endl << endl;
-			cout << "Produtos disponíveis:" << endl << endl;
+			do {
+				system("clear");
+				cout << "[Venda]" << endl << endl;
+				cout << "Cliente: " << c->get_nome() << endl;
+				cout << "Sócio: " << c->eh_socio() << endl << endl;
+				cout << "Produtos disponíveis:" << endl << endl;
+	
+				for(Produto *p:loja->produtos)
+					p->imprime_dados(0);
+
+				cout << endl << "Produtos à passar no caixa (vindos do carrinho que estou montando agora)";
+
+		
+				cout << endl << endl << "Nome: ";
+				cin >> nome;
+				prod = loja->checa_produto(nome);
+				if(prod){
+					cout << "Quantidade: ";
+					cin >> qtd;
+					c->carrinho->add_item(prod, qtd, loja->produtos);
+				} else {
+					escolha = "s";
+					continue;
+				}
+
+				cout << endl << "Deseja comprar outro item? (s/n)\n\n>> ";
+				cin >> escolha;
+			} while (escolha != "n");
+
+			system("clear");
+			c->carrinho->imprime_dados();
+
+			cout << endl << "Valor entregue: R$ ";
+			cin >> valorEntregue;
+			cout << "Troco: R$ " << valorEntregue - c->carrinho->get_valorTotal() << endl;
 			
-			for(Produto *p:loja->produtos)
-			{
-				p->imprime_dados(0);
-			}
-			cout << endl << "Aperte enter para prosseguir com a compra" << endl;
+			cout << endl << "Pressione enter para encerrar a venda...";
 			getchar();
 			getchar();
+
 		}
 		
 	} else {
 		cout << "[Registro]" << endl << endl;
 		cout << "Cliente não encontrado." << endl;
 		cout << " (1) Cadastrar cliente" << endl;
-		cout << " (2) Voltar\n\n>> ";
+		cout << " (0) Voltar\n\n>> ";
 		cin >> escolha;
 		
 		if(escolha == "1")
@@ -113,9 +149,6 @@ void modoVenda(Loja *loja)
 		else
 			menu(loja);
 	}
-	
-	
-	
 	
 	menu(loja);
 	

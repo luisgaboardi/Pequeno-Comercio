@@ -37,16 +37,14 @@ int Produto::get_quantidade(){
 	return quantidade;
 }
 void Produto::set_quantidade(int quantidade){
-	if(quantidade > 0)
-		this->quantidade = quantidade;
+	this->quantidade = quantidade;
 }
 	
 float Produto::get_valor(){
 	return valor;
 }
 void Produto::set_valor(float valor){
-	if(valor > 0.0)
-		this->valor = valor;
+	this->valor = valor;
 }
 
 bool Produto::noEstoque()
@@ -77,7 +75,10 @@ void Produto::imprime_dados()
 void Produto::imprime_dados(int x)
 {
 	x++;
-	cout << "Nome: " << get_nome() << endl;
-	cout << "Valor Unitário: R$ " << get_valor() << endl;
-	cout << "-----------------------------" << endl;
+	if(noEstoque())
+	{
+		cout << "Nome: " << get_nome() << endl;
+		cout << "Valor Unitário: R$ " << get_valor() << endl;
+		cout << "-----------------------------" << endl;
+	}
 }

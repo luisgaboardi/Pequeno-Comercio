@@ -15,6 +15,24 @@ void Carrinho::set_valorTotal(float valorTotal){
 	if(valorTotal > 0.0)
 		this->valorTotal = valorTotal;
 }
+
+void Carrinho::add_item(Produto *prod, int qtd, vector<Produto*> lista)
+{
+	pair <Produto *, int> compra;
+	compra.first = prod;
+	compra.second = qtd;
+	for(Produto *p : lista)
+	{
+		if(p == prod){
+			p->set_quantidade(p->get_quantidade() - qtd);
+			break;
+		}
+	}
+	item.push_back(compra);
+
+	valorTotal += compra.second * compra.first->get_valor();
+}
+
 		
 void Carrinho::imprime_dados()
 {
@@ -24,16 +42,18 @@ void Carrinho::imprime_dados()
 		for(pair<Produto*, int> p : item)
 		{
 			cout << "Nome: " << p.first->get_nome() << endl;
-			cout << "Categoria(s): ";
-			for(unsigned int i = 0; i < p.first->get_categoria().size(); ++i)
-			{
-				cout << p.first->get_categoria()[i];
-				if(i != p.first->get_categoria().size() - 1)
-					cout << ", ";
-			}
-			cout << endl << "Quantidade: " << p.second << endl;
+			// cout << "Categoria(s): ";
+			// for(unsigned int i = 0; i < p.first->get_categoria().size(); ++i)
+			// {
+			// 	cout << p.first->get_categoria()[i];
+			// 	if(i != p.first->get_categoria().size() - 1)
+			// 		cout << ", ";
+			// }
+			cout << "Quantidade: " << p.second << endl;
 			cout << "Valor: R$ " << p.second * p.first->get_valor() << endl;
-			cout << "-----------------------------" << endl;
+			cout << "-----------------------" << endl;
 		}
+
+		cout << "Valor Total: R$ " << get_valorTotal() << endl;
 	}
 }

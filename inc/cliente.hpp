@@ -9,10 +9,13 @@ class Cliente : public Pessoa
 {
 	private:
 		vector<Produto*> historico;
-		Carrinho *carrinho;
+		//Carrinho *carrinho;
 		bool socio;
 	
 	public:
+
+		Carrinho *carrinho = new Carrinho();
+
 		Cliente();
 		Cliente(string nome, string cpf, string email, bool socio);
 		~Cliente();
