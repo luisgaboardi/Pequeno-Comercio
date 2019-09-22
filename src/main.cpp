@@ -19,7 +19,7 @@ int main()
 	
 	system("clear");
 	cout << "Iniciando o sistema\nAguarde..." << endl;
-	sleep(3);
+	sleep(2);
 	
 	Loja *loja = new Loja();
 	
@@ -41,13 +41,13 @@ void menu(Loja *loja)
 		cout << "(1) Venda" << endl;
 		cout << "(2) Recomendação" << endl;
 		cout << "(3) Estoque" << endl;
-		// Lista de Clientes
-		// Lista de Funcionários
+		cout << "(4) Lista de Clientes" << endl;
+		cout << "(5) Lista de Funcionários" << endl;
 		cout << "(0) Sair\n\n>> ";
 		
 		cin >> entrada;
 		
-	} while (entrada != "1" && entrada != "2" && entrada != "3" && entrada != "0");
+	} while (entrada != "1" && entrada != "2" && entrada != "3" && entrada != "4" && entrada != "5" && entrada != "0");
 	
 	if(entrada == "1"){
 		modoVenda(loja);
@@ -55,6 +55,12 @@ void menu(Loja *loja)
 		modoRecomendacao(loja);
 	} else if(entrada == "3"){
 		modoEstoque(loja);
+	} else if(entrada == "4"){
+		loja->imprime_clientes();
+		menu(loja);
+	} else if(entrada == "5"){
+		loja->imprime_funcionarios();
+		menu(loja);
 	} else if(entrada == "0"){
 		system("clear");
 		exit(-1);

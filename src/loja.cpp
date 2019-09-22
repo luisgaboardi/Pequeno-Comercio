@@ -140,3 +140,37 @@ void Loja::cadastrar_cliente()
 	
 	clientes.push_back(new Cliente(nome, cpf, email, socio));
 }
+
+void Loja::imprime_clientes()
+{
+	system("clear");
+	cout << "[Registro]" << endl << endl;
+
+	if (!clientes.empty())
+	{
+		for(Cliente *c : clientes){
+			c->imprime_dados();
+		}
+	} else {
+		cout << "A loja ainda não tem nenhum cliente." << endl;
+	}
+	
+	cout << endl << "Pressione enter para voltar...";
+	getchar();
+	getchar();
+}
+
+void Loja::imprime_funcionarios()
+{
+	system("clear");
+	cout << "[Registro]" << endl << endl;
+
+	for(Funcionario *f : funcionarios)
+	{
+		f->imprime_dados(0);
+	}
+	
+	cout << endl << "Pressione enter para voltar...";
+	getchar();
+	getchar();
+}

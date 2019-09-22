@@ -24,6 +24,8 @@ class Loja
 		void identifica_funcionario();
 		Cliente *confere_cliente();
 		void cadastrar_cliente();
+		void imprime_clientes();
+		void imprime_funcionarios();
 };
 
 
