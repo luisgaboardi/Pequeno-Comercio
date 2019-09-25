@@ -26,6 +26,7 @@ void Carrinho::add_item(Produto *prod, int qtd, vector<Produto*> lista)
 		if(p == prod){
 			p->set_quantidade(p->get_quantidade() - qtd);
 			break;
+			// Se cancelar comprar, reverter isso tudo
 		}
 	}
 	item.push_back(compra);
@@ -42,13 +43,6 @@ void Carrinho::imprime_dados()
 		for(pair<Produto*, int> p : item)
 		{
 			cout << "Nome: " << p.first->get_nome() << endl;
-			// cout << "Categoria(s): ";
-			// for(unsigned int i = 0; i < p.first->get_categoria().size(); ++i)
-			// {
-			// 	cout << p.first->get_categoria()[i];
-			// 	if(i != p.first->get_categoria().size() - 1)
-			// 		cout << ", ";
-			// }
 			cout << "Quantidade: " << p.second << endl;
 			cout << "Valor: R$ " << p.second * p.first->get_valor() << endl;
 			cout << "-----------------------" << endl;

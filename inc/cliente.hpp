@@ -8,13 +8,13 @@
 class Cliente : public Pessoa
 {
 	private:
-		vector<Produto*> historico;
+		//vector<Produto*> historico;
 		//Carrinho *carrinho;
 		bool socio;
 	
 	public:
-
-		Carrinho *carrinho = new Carrinho();
+		vector<Produto*> historico;
+		Carrinho *carrinho;
 
 		Cliente();
 		Cliente(string nome, string cpf, string email, bool socio);

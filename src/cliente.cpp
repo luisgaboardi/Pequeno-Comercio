@@ -4,6 +4,7 @@ Cliente::Cliente(){}
 
 Cliente::Cliente(string nome, string cpf, string email, bool socio) : Pessoa(nome, cpf, email){
 	this->socio = socio;
+	carrinho = new Carrinho();
 }
 
 Cliente::~Cliente(){}

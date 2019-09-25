@@ -59,17 +59,20 @@ bool Produto::noEstoque()
 
 void Produto::imprime_dados()
 {
-	cout << "Nome: " << get_nome() << endl;
-	cout << "Categoria(s): ";
-	for(unsigned int i = 0; i < get_categoria().size(); ++i)
+	if(noEstoque())
 	{
-		cout << get_categoria()[i];
-		if(i != get_categoria().size() - 1)
-			cout << ", ";
+		cout << "Nome: " << get_nome() << endl;
+		cout << "Categoria(s): ";
+		for(unsigned int i = 0; i < get_categoria().size(); ++i)
+		{
+			cout << get_categoria()[i];
+			if(i != get_categoria().size() - 1)
+				cout << ", ";
+		}
+		cout << endl << "Quantidade: " << get_quantidade() << endl;
+		cout << "Valor Unitário: R$ " << get_valor() << endl;
+		cout << "-----------------------------" << endl;
 	}
-	cout << endl << "Quantidade: " << get_quantidade() << endl;
-	cout << "Valor Unitário: R$ " << get_valor() << endl;
-	cout << "-----------------------------" << endl;
 }
 
 void Produto::imprime_dados(int x)
