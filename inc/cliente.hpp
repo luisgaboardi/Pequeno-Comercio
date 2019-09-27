@@ -17,7 +17,7 @@ class Cliente : public Pessoa
 		Carrinho *carrinho;
 
 		Cliente();
-		Cliente(string nome, string cpf, string email, bool socio);
+		Cliente(string nome, long long int cpf, string email, bool socio);
 		~Cliente();
 		
 		bool get_socio();

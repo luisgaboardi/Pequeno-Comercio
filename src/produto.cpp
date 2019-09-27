@@ -1,4 +1,6 @@
 #include "produto.hpp"
+#include <iomanip>
+
 
 Produto::Produto()
 {
@@ -70,7 +72,7 @@ void Produto::imprime_dados()
 				cout << ", ";
 		}
 		cout << endl << "Quantidade: " << get_quantidade() << endl;
-		cout << "Valor Unitário: R$ " << get_valor() << endl;
+		cout << "Valor Unitário: R$ " << fixed << setprecision(2) << get_valor() << endl;
 		cout << "-----------------------------" << endl;
 	}
 }
@@ -81,7 +83,7 @@ void Produto::imprime_dados(int x)
 	if(noEstoque())
 	{
 		cout << "Nome: " << get_nome() << endl;
-		cout << "Valor Unitário: R$ " << get_valor() << endl;
+		cout << "Valor Unitário: R$ " << fixed << setprecision(2) << get_valor() << endl;
 		cout << "-----------------------------" << endl;
 	}
 }

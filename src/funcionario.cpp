@@ -2,7 +2,7 @@
 
 Funcionario::Funcionario(){}
 
-Funcionario::Funcionario(string nome, string cpf, string email, string senha) : Pessoa(nome, cpf, email){
+Funcionario::Funcionario(string nome, long long int cpf, string email, string senha) : Pessoa(nome, cpf, email){
 	set_senha(senha);
 }
 

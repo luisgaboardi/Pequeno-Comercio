@@ -10,7 +10,7 @@ class Funcionario : public Pessoa
 		string senha;
 	public:
 		Funcionario();
-		Funcionario(string nome, string cpf, string email, string senha);
+		Funcionario(string nome, long long int cpf, string email, string senha);
 		~Funcionario();
 		
 		string get_senha();

@@ -34,8 +34,39 @@ void Carrinho::add_item(Produto *prod, int qtd, vector<Produto*> lista)
 	valorTotal += compra.second * compra.first->get_valor();
 }
 
+int Carrinho::confere_carrinho()
+{
+	system("clear");
+	
+	int flagPossivel = 1;
+	int unico = 0;
+	int i = 0;
+	
+	for(pair<Produto *, int> p : item)
+	{
+		if(p.first->get_quantidade() < 0){
+			flagPossivel = 0;
+			if(unico == 0) {
+				cout << "Não foi possível concluir esta compra." << endl << endl;
+				unico = 1;
+			}
+			cout << "O produto " << p.first->get_nome() << " não possui " << p.second << " unidades." << endl;
+			cout << "Unidades disponíveis: " << p.first->get_quantidade() + p.second << endl;
+		}
 		
-void Carrinho::imprime_dados()
+		i++;
+	}
+	if(flagPossivel == 0)
+	{
+		for(pair<Produto *, int> p : item)
+			p.first->set_quantidade(p.first->get_quantidade() + p.second);
+	}
+	
+	return flagPossivel;
+}
+
+		
+void Carrinho::imprime_dados(bool socio)
 {
 	if(!item.empty())
 	{
@@ -47,7 +78,13 @@ void Carrinho::imprime_dados()
 			cout << "Valor: R$ " << p.second * p.first->get_valor() << endl;
 			cout << "-----------------------" << endl;
 		}
+		if(socio){
+			set_valorTotal(get_valorTotal()*0.85);
+		}
+		set_valorTotal(0.0f);
 
 		cout << "Valor Total: R$ " << get_valorTotal() << endl;
+		
+		set_valorTotal(0.0f);
 	}
 }

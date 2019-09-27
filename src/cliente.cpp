@@ -2,7 +2,7 @@
 
 Cliente::Cliente(){}
 
-Cliente::Cliente(string nome, string cpf, string email, bool socio) : Pessoa(nome, cpf, email){
+Cliente::Cliente(string nome, long long int cpf, string email, bool socio) : Pessoa(nome, cpf, email){
 	this->socio = socio;
 	carrinho = new Carrinho();
 }

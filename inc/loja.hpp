@@ -4,6 +4,8 @@
 #include "funcionario.hpp"
 #include "cliente.hpp"
 #include "produto.hpp"
+    
+#include <string>
 
 class Loja
 {
@@ -19,7 +21,8 @@ class Loja
 		
 		void identifica_funcionario();
 		Cliente *confere_cliente();
-		void cadastrar_cliente();
+    	Cliente *confere_cliente(long long int cpf);
+		long long int cadastrar_cliente();
 		void imprime_clientes();
 		void imprime_funcionarios();
 		Produto* checa_produto(string nome);

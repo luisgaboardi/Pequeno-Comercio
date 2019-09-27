@@ -2,6 +2,11 @@
 
 #include <vector>
 #include <stdlib.h>
+#include <string>
+
+string getString();
+template <typename T1>
+T1 getInput();
 
 Loja::Loja(){}
 
@@ -9,8 +14,9 @@ Loja::~Loja(){}
 
 void Loja::identifica_funcionario()
 {
-	string escolha;
-	string cpfFunc, senhaFunc;
+	int escolha;
+	long long int cpfFunc;
+	string senhaFunc;
 	int flag = 0;
 	
 	do{
@@ -19,19 +25,19 @@ void Loja::identifica_funcionario()
 		cout << "(1) Login" << endl;
 		cout << "(2) Cadastrar novo funcionário\n\n>> ";
 	
-		cin >> escolha;
+		escolha = getInput<int>();
 		
-	} while (escolha != "1" && escolha != "2");
+	} while (escolha != 1 && escolha != 2);
 	
-	if(escolha == "1")
+	if(escolha == 1)
 	{
 		system("clear");
 		cout << "[Login]" << endl << endl;
 		
 		cout << "CPF: ";
-		cin >> cpfFunc;
+		cpfFunc = getInput<long long int>();
 		cout << "Senha: ";
-		cin >> senhaFunc;
+		senhaFunc = getString();
 		
 		system("clear");
 		
@@ -40,9 +46,7 @@ void Loja::identifica_funcionario()
 			if(cpfFunc == f->get_cpf() && senhaFunc == f->get_senha())
 			{
 				cout << "Bem vindo(a), " << f->get_nome() << endl << endl;
-				//f->imprime_dados();
 				cout << "Pressione enter para continuar...";
-				getchar();
 				getchar();
 				flag = 1;
 				break;
@@ -53,11 +57,10 @@ void Loja::identifica_funcionario()
 		{
 			cout << "Funcionário não encontrado.\n\nPressione enter para retornar...";
 			getchar();
-			getchar();
 			identifica_funcionario();
 		}
 
-	} else if(escolha == "2") {
+	} else if(escolha == 2) {
 	
 		string nomeFunc, emailFunc;
 	
@@ -65,19 +68,18 @@ void Loja::identifica_funcionario()
 		
 		cout << "[Cadastro]" << endl << endl;
 		cout << "Nome: ";
-		cin >> nomeFunc;
+		nomeFunc = getString();
 		cout << "CPF: ";
-		cin >> cpfFunc;
+		cpfFunc = getInput<long long int>();
 		cout << "Email: ";
-		cin >> emailFunc;
+		emailFunc = getString();
 		cout << "Senha: ";
-		cin >> senhaFunc;
+		senhaFunc = getString();
 
 		funcionarios.push_back(new Funcionario(nomeFunc, cpfFunc, emailFunc, senhaFunc));
 
 		cout << endl << "Funcionário cadastrado com sucesso" << endl;
 		cout << endl << "Pressione enter para voltar...";
-		getchar();
 		getchar();
 		identifica_funcionario();
 	}
@@ -86,14 +88,14 @@ void Loja::identifica_funcionario()
 
 Cliente* Loja::confere_cliente()
 {
-	string cpf;
+	long long int cpf;
 	system("clear");
 
 	
 	cout << "[Cliente]" << endl << endl;
 	
 	cout << "CPF: ";
-	cin >> cpf;
+	cpf = getInput<long long int>();
 	
 	system("clear");
 	
@@ -105,9 +107,22 @@ Cliente* Loja::confere_cliente()
 	return NULL;
 }
 
-void Loja::cadastrar_cliente()
+Cliente* Loja::confere_cliente(long long int cpf)
 {
-	string nome, cpf, email;
+	system("clear");
+	
+	for(Cliente *c : clientes)
+	{
+		if(cpf == c->get_cpf())
+			return c;
+	}
+	return NULL;
+}
+
+long long int Loja::cadastrar_cliente()
+{
+	string nome, email;
+	long long int cpf;
 	bool socio = false;
 	string escolha;
 	
@@ -117,11 +132,11 @@ void Loja::cadastrar_cliente()
 	cout << "[Cadastro]" << endl << endl;
 	
 	cout << "Nome: ";
-	cin >> nome;
+	nome = getString();
 	cout << "CPF: ";
-	cin >> cpf;
+	cpf = getInput<long long int>();
 	cout << "Email: ";
-	cin >> email;
+	email = getString();
 	
 	cout << endl << "Deseja se tornar sócio? (s/n)\n\n>> ";
 	cin >> escolha;
@@ -131,6 +146,16 @@ void Loja::cadastrar_cliente()
 	}
 	
 	clientes.push_back(new Cliente(nome, cpf, email, socio));
+	
+	system("clear");
+	
+	cout << "[Cadastro]" << endl << endl;
+	cout << "Cliente cadastrado!" << endl << endl;
+	cout << "Pressione enter para prosseguir com a compra...";
+	getchar();
+	getchar();
+
+	return cpf;
 }
 
 void Loja::imprime_clientes()
@@ -149,7 +174,6 @@ void Loja::imprime_clientes()
 	
 	cout << endl << "Pressione enter para voltar...";
 	getchar();
-	getchar();
 }
 
 void Loja::imprime_funcionarios()
@@ -163,7 +187,6 @@ void Loja::imprime_funcionarios()
 	}
 	
 	cout << endl << "Pressione enter para voltar...";
-	getchar();
 	getchar();
 }
 

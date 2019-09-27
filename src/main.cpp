@@ -4,18 +4,49 @@
 #include "funcionario.hpp"
 #include "produto.hpp"
 
-
-
-#include <iostream>
 #include <stdlib.h>
 #include <unistd.h>
+#include <iostream>
+#include <iomanip>
 
 using namespace std;
 
+string getString();
+template <typename T1>
+T1 getInput();
+
+string getString()
+{
+    string valor;
+    getline(cin, valor);
+    return valor;
+}
+
+
+template <typename T1>
+T1 getInput()
+{
+    while(true){
+		T1 valor;
+		cin >> valor;
+		if(cin.fail()){
+			cin.clear();
+			cin.ignore(32767,'\n');
+			cout << "Entrada inválida!" << endl;
+		}
+    	else
+    	{
+			cin.ignore(32767,'\n');
+			return valor;
+		}
+    }
+}
+
 void menu(Loja *);
-void modoVenda(Loja *);
+void modoVenda(Loja *, long long int);
 void modoRecomendacao(Loja *);
 void modoEstoque(Loja *);
+
 
 int main()
 {
@@ -36,55 +67,61 @@ int main()
 
 void menu(Loja *loja)
 {
-	string entrada;
+	int entrada;
 	
 	do{
 		system("clear");
+		
 		cout << "     Menu" << endl << endl;
 		cout << "(1) Venda" << endl;
 		cout << "(2) Recomendação" << endl;
 		cout << "(3) Estoque" << endl;
 		cout << "(4) Lista de Clientes" << endl;
 		cout << "(5) Lista de Funcionários" << endl;
-		cout << "(0) Sair\n\n>> ";
+		cout << "(0) Sair" << endl << endl;
 		
-		cin >> entrada;
+		entrada = getInput<long long int>();
 		
-	} while (entrada != "1" && entrada != "2" && entrada != "3" && entrada != "4" && entrada != "5" && entrada != "0");
+	} while (entrada < 0 || entrada > 5);
 	
-	if(entrada == "1"){
-		modoVenda(loja);
-	} else if(entrada == "2"){
+	if(entrada == 1){
+		modoVenda(loja, 0);
+	} else if(entrada == 2){
 		modoRecomendacao(loja);
-	} else if(entrada == "3"){
+	} else if(entrada == 3){
 		modoEstoque(loja);
-	} else if(entrada == "4"){
+	} else if(entrada == 4){
 		loja->imprime_clientes();
 		menu(loja);
-	} else if(entrada == "5"){
+	} else if(entrada == 5){
 		loja->imprime_funcionarios();
 		menu(loja);
-	} else if(entrada == "0"){
+	} else if(entrada == 0){
 		system("clear");
 		exit(-1);
 	}
 	
 }
 
-void modoVenda(Loja *loja)
+void modoVenda(Loja *loja, long long int cpf)
 {
 	string escolha;
+	int opcao;
 	Cliente *c;
 	pair<Produto*, int> compra;
 	string nome;
 	Produto *prod;
+	long long int cpfCadastrado;
 	int qtd;
 	float valorEntregue;
 	int flagVazio = 0;
 	system("clear");
 	
-	c = loja->confere_cliente();
-
+	if(cpf == 0)
+		c = loja->confere_cliente();
+	else
+		c = loja->confere_cliente(cpf);
+		
 	for(Produto *p : loja->produtos){
 		if(p->noEstoque()){
 			flagVazio = 1;
@@ -100,7 +137,6 @@ void modoVenda(Loja *loja)
 			cout << "O estoque está vazio!" << endl;
 			cout << endl << "Aperte enter para retornar ao menu...";
 			getchar();
-			getchar();
 		}
 		else
 		{
@@ -114,14 +150,14 @@ void modoVenda(Loja *loja)
 				for(Produto *p:loja->produtos)
 					p->imprime_dados(0);
 
-				cout << endl << "Produtos à passar no caixa (vindos do carrinho que estou montando agora)";
+				cout << endl << "Produtos à passar no caixa:";
 		
 				cout << endl << endl << "Nome: ";
-				cin >> nome;
+				nome = getString();
 				prod = loja->checa_produto(nome);
 				if(prod){
 					cout << "Quantidade: ";
-					cin >> qtd;
+					qtd = getInput<int>();
 					c->carrinho->add_item(prod, qtd, loja->produtos);
 					c->historico.push_back(prod);
 				} else {
@@ -131,15 +167,46 @@ void modoVenda(Loja *loja)
 
 				cout << endl << "Deseja comprar outro item? (s/n)\n\n>> ";
 				cin >> escolha;
-			} while (escolha != "n");
+				
+				flagVazio = 0;
+				
+				for(Produto *p : loja->produtos){
+					if(p->noEstoque()){
+						flagVazio = 1;
+						break;
+					}
+				}
+				
+			} while (escolha != "n" && flagVazio == 1);
+			
+			if(escolha == "s" && flagVazio == 0)
+			{
+				cout << endl << "O estoque está vazio." << endl << "Pressione enter para encerrar a compra." << endl;
+				getchar();
+				getchar();
+			}
+			
+			if(c->carrinho->confere_carrinho())
+			{
+				c->carrinho->imprime_dados(c->get_socio());
+				cout << endl << "Valor entregue: R$ ";
+				do{
+					valorEntregue = getInput<float>();
+					if(valorEntregue < c->carrinho->get_valorTotal())
+						cout << "O valor inserido é insuficiente." << endl << "R$ ";
+				}while (valorEntregue < c->carrinho->get_valorTotal());
+				
+				cout << "Troco: R$ " << valorEntregue - c->carrinho->get_valorTotal() << endl << endl;
+				cout << "----------------------\nVenda realizada.";
+			}
+			
+			while (!c->carrinho->item.empty())
+			{
+				c->carrinho->item.pop_back();
+			}
+			
+			c->carrinho->set_valorTotal(0.0f);
 
-			system("clear");
-			c->carrinho->imprime_dados();
-
-			cout << endl << "Valor entregue: R$ ";
-			cin >> valorEntregue;
-			cout << "Troco: R$ " << valorEntregue - c->carrinho->get_valorTotal() << endl << endl;
-			cout << "----------------------\nVenda realizada.";
 
 			cout << endl << "Pressione enter para retornar ao menu...";
 			getchar();
@@ -147,16 +214,22 @@ void modoVenda(Loja *loja)
 		}
 		
 	} else {
-		cout << "[Registro]" << endl << endl;
-		cout << "Cliente não encontrado." << endl;
-		cout << " (1) Cadastrar cliente" << endl;
-		cout << " (0) Voltar\n\n>> ";
-		cin >> escolha;
 		
-		if(escolha == "1")
-			loja->cadastrar_cliente();
-		else
+		do{
+			system("clear");
+			cout << "[Registro]" << endl << endl;
+			cout << "Cliente não encontrado." << endl;
+			cout << " (1) Cadastrar cliente" << endl;
+			cout << " (0) Voltar\n\n>> ";
+			opcao = getInput<int>();
+		} while (opcao != 1 && opcao != 2);
+		
+		if(opcao == 1){
+			cpfCadastrado = loja->cadastrar_cliente();
+			modoVenda(loja, cpfCadastrado);
+		} else {
 			menu(loja);
+		}
 	}
 	
 	menu(loja);
@@ -174,6 +247,7 @@ void modoEstoque(Loja *loja)
 {
 	string escolha, nomeP, categoriaP;
 	int qtdP;
+	int opcao;
 	float valorP;
 	int flagQtd = 0;
 	int flag = 0, count = 1;
@@ -185,11 +259,11 @@ void modoEstoque(Loja *loja)
 		cout << "(2) Produtos em estoque" << endl;
 		cout << "(0) Voltar\n\n>> ";
 		
-		cin >> escolha;
+		opcao = getInput<int>();
 	
-	}while(escolha != "1" && escolha != "2" && escolha != "0");
+	}while(opcao != 1 && opcao != 2 && opcao != 0);
 	
-	if(escolha == "1"){
+	if(opcao == 1){
 		
 		system("clear");
 		cout << "  [Estoque]" << endl << endl;
@@ -197,16 +271,16 @@ void modoEstoque(Loja *loja)
 		Produto *p1 = new Produto();
 
 		cout << "Nome: ";
-		cin >> nomeP;
+		nomeP = getString();
 		p1->set_nome(nomeP);
 		
 		do{
 			cout << "Categoria " << count << ": ";
-			cin >> categoriaP;
+			categoriaP = getString();
 			p1->set_categoria(categoriaP);
 			
 			cout << endl << "O produto tem outra categoria? (s/n)\n>> ";
-			cin >> escolha;
+			escolha = getString();
 			
 			if(escolha != "s"){
 				flag = 1;
@@ -217,11 +291,11 @@ void modoEstoque(Loja *loja)
 		} while(flag == 0);
 		
 		cout << "Quantidade: ";
-		cin >> qtdP;
+		qtdP = getInput<int>();
 		p1->set_quantidade(qtdP);
 		
 		cout << "Valor unitário: ";
-		cin >> valorP;
+		valorP = getInput<float>();
 		p1->set_valor(valorP);
 		
 		loja->produtos.push_back(p1);
@@ -233,9 +307,8 @@ void modoEstoque(Loja *loja)
 		
 		cout << endl << "Pressione enter para voltar ao menu...";
 		getchar();
-		getchar();
-		
-	} else if(escolha == "2"){
+
+	} else if(opcao == 2){
 		system("clear");
 		cout << "[Estoque]" << endl << endl;
 
@@ -261,7 +334,6 @@ void modoEstoque(Loja *loja)
 		}
 		
 		cout << endl << "Pressione enter para voltar ao menu...";
-		getchar();
 		getchar();
 		
 	}

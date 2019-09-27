@@ -17,9 +17,10 @@ class Carrinho
 		
 		float get_valorTotal();
 		void set_valorTotal(float valorTotal);
+        int confere_carrinho();
 
 		void add_item(Produto *nome, int qtd, vector<Produto*> lista);
-		void imprime_dados();
+		void imprime_dados(bool socio);
 };
 
 #endif

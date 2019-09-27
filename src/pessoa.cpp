@@ -4,10 +4,10 @@ Pessoa::Pessoa()
 {
 	set_nome("");
 	set_email("");
-	set_cpf("");
+	set_cpf(0);
 }
 
-Pessoa::Pessoa(string nome, string cpf, string email)
+Pessoa::Pessoa(string nome, long long int cpf, string email)
 {
 	set_nome(nome);
 	set_cpf(cpf);
@@ -25,11 +25,11 @@ void Pessoa::set_nome(string nome){
 		this->nome = nome;
 }
 
-string Pessoa::get_cpf(){
+long long int Pessoa::get_cpf(){
 	return this->cpf;
 }
-void Pessoa::set_cpf(string cpf){
-	if(cpf.size() < 12)
+void Pessoa::set_cpf(long long int cpf){
+	if(cpf != 0)
 		this->cpf = cpf;
 }
 

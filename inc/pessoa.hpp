@@ -10,21 +10,21 @@ class Pessoa
 {
 	private:
 		string nome,
-				email,
-				cpf;
+				email;
+		long long int cpf;
 
 	public:
 		Pessoa();
-		Pessoa(string nome, string cpf, string email);
+		Pessoa(string nome, long long int cpf, string email);
 		~Pessoa();
 
 		string get_nome();
 		string get_email();
-		string get_cpf();
+		long long int get_cpf();
 
 		void set_nome(string nome);
 		void set_email(string email);
-		void set_cpf(string cpf);
+		void set_cpf(long long int cpf);
 
 		virtual void imprime_dados();
 };
