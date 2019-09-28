@@ -22,7 +22,6 @@ string getString()
     return valor;
 }
 
-
 template <typename T1>
 T1 getInput()
 {
