@@ -234,7 +234,6 @@ void modoVenda(Loja *loja, long long int cpf)
 	
 	menu(loja);
 	
-	
 }
 
 void modoRecomendacao(Loja *loja)
