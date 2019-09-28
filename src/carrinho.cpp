@@ -65,7 +65,6 @@ int Carrinho::confere_carrinho()
 	return flagPossivel;
 }
 
-		
 void Carrinho::imprime_dados(bool socio)
 {
 	if(!item.empty())
