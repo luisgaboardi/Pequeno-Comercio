@@ -16,6 +16,7 @@ void Funcionario::set_senha(string senha){
 		this->senha = senha;
 }
 
+
 void Funcionario::imprime_dados()
 {
 	int flag = 0;
