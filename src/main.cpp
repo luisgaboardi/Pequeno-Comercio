@@ -207,7 +207,6 @@ void modoVenda(Loja *loja, long long int cpf)
 			
 			c->carrinho->set_valorTotal(0.0f);
 
-
 			cout << endl << "Pressione enter para retornar ao menu...";
 			getchar();
 			getchar();
