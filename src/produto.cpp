@@ -87,3 +87,17 @@ void Produto::imprime_dados(int x)
 		cout << "-----------------------------" << endl;
 	}
 }
+
+void Produto::imprime_historico(int qtd)
+{
+	cout << "Nome: " << get_nome() << endl;
+	cout << "Categoria(s): ";
+	for(unsigned int i = 0; i < get_categoria().size(); ++i)
+	{
+		cout << get_categoria()[i];
+		if(i != get_categoria().size() - 1)
+			cout << ", ";
+	}
+	cout << endl << "Quantidade: " << qtd << endl;
+	cout << "-----------------------------" << endl;
+}

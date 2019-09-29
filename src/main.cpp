@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <iostream>
 #include <iomanip>
+#include <fstream>
 
 using namespace std;
 
@@ -71,7 +72,7 @@ void menu(Loja *loja)
 	do{
 		system("clear");
 		
-		cout << "     Menu" << endl << endl;
+		cout << "[Menu]" << endl << endl;
 		cout << "(1) Venda" << endl;
 		cout << "(2) Recomendação" << endl;
 		cout << "(3) Estoque" << endl;
@@ -158,7 +159,7 @@ void modoVenda(Loja *loja, long long int cpf)
 					cout << "Quantidade: ";
 					qtd = getInput<int>();
 					c->carrinho->add_item(prod, qtd, loja->produtos);
-					c->historico.push_back(prod);
+					c->arruma_Historico(prod->get_categoria(), qtd);
 				} else {
 					escolha = "s";
 					continue;
@@ -185,7 +186,7 @@ void modoVenda(Loja *loja, long long int cpf)
 				getchar();
 			}
 			
-			if(c->carrinho->confere_carrinho())
+			if(c->carrinho->confere_carrinho(c->historico))
 			{
 				c->carrinho->imprime_dados(c->get_socio());
 				cout << endl << "Valor entregue: R$ ";
@@ -208,7 +209,7 @@ void modoVenda(Loja *loja, long long int cpf)
 
 			cout << endl << "Pressione enter para retornar ao menu...";
 			getchar();
-			getchar();
+			// getchar();
 		}
 		
 	} else {
@@ -220,7 +221,7 @@ void modoVenda(Loja *loja, long long int cpf)
 			cout << " (1) Cadastrar cliente" << endl;
 			cout << " (0) Voltar\n\n>> ";
 			opcao = getInput<int>();
-		} while (opcao != 1 && opcao != 2);
+		} while (opcao != 1 && opcao != 0);
 		
 		if(opcao == 1){
 			cpfCadastrado = loja->cadastrar_cliente();
@@ -236,8 +237,37 @@ void modoVenda(Loja *loja, long long int cpf)
 
 void modoRecomendacao(Loja *loja)
 {
+	long long int cpf;
+	Cliente *c;
 	system("clear");
-	cout << "Olá" << endl;
+	
+	cout << "[Recomendação]" << endl << endl << "CPF: ";
+	cpf = getInput<long long int>();
+	
+	c = loja->confere_cliente(cpf);
+	
+	if(c)
+	{
+		// cout << "[Recomendação]" << endl << endl;
+
+		// for(unsigned int i = 0; i < c->historico.size(); i++)
+		// {
+		// 	cout << "Categoria: " << c->historico[i].first << endl;
+		// 	cout << "Quantidade: " << c->historico[i].second << endl;
+		// 	cout << "----------------------" << endl;
+		// }
+		
+		c->recomendacao();
+	}
+	else
+	{
+		cout << "[Registro]" << endl;
+		cout << endl << "Cliente não encontrado." << endl;
+	}
+	
+	cout << "Pressione Enter para retornar ao menu..." << endl;
+	getchar();
+	menu(loja);
 }
 
 void modoEstoque(Loja *loja)
@@ -251,7 +281,7 @@ void modoEstoque(Loja *loja)
 	
 	do{
 		system("clear");
-		cout << "  [Estoque]" << endl << endl;
+		cout << "[Estoque]" << endl << endl;
 		cout << "(1) Adicionar um produto" << endl;
 		cout << "(2) Produtos em estoque" << endl;
 		cout << "(0) Voltar\n\n>> ";

@@ -4,6 +4,7 @@
 #include "pessoa.hpp"
 #include "carrinho.hpp"
 #include "produto.hpp"
+#include <algorithm>
 
 class Cliente : public Pessoa
 {
@@ -13,7 +14,7 @@ class Cliente : public Pessoa
 		bool socio;
 	
 	public:
-		vector<Produto*> historico;
+		vector < pair<string,int> > historico;
 		Carrinho *carrinho;
 
 		Cliente();
@@ -23,8 +24,11 @@ class Cliente : public Pessoa
 		bool get_socio();
 		void set_socio(bool socio);
 		string eh_socio();
-		
+    
+        void arruma_Historico(vector<string> categoria, int qtd);
+        void recomendacao();
 		void imprime_dados();
+
 };
 
 #endif

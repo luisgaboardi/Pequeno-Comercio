@@ -17,7 +17,6 @@ class Funcionario : public Pessoa
 		void set_senha(string senha);
 		
 		void imprime_dados();
-		void imprime_dados(int x);
 };
 
 #endif

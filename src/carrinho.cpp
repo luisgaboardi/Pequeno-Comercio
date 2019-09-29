@@ -34,7 +34,7 @@ void Carrinho::add_item(Produto *prod, int qtd, vector<Produto*> lista)
 	valorTotal += compra.second * compra.first->get_valor();
 }
 
-int Carrinho::confere_carrinho()
+int Carrinho::confere_carrinho(vector<pair<string, int> > &historico)
 {
 	system("clear");
 	
@@ -60,6 +60,9 @@ int Carrinho::confere_carrinho()
 	{
 		for(pair<Produto *, int> p : item)
 			p.first->set_quantidade(p.first->get_quantidade() + p.second);
+		while (historico.empty())
+			historico.pop_back();
+			
 	}
 	
 	return flagPossivel;

@@ -55,7 +55,8 @@ void Loja::identifica_funcionario()
 		
 		if(flag == 0)
 		{
-			cout << "Funcionário não encontrado.\n\nPressione enter para retornar...";
+			cout << "[Registro]" << endl << endl;
+			cout << "Usuário ou senha não encontrado.\n\nPressione enter para retornar...";
 			getchar();
 			identifica_funcionario();
 		}
@@ -183,7 +184,7 @@ void Loja::imprime_funcionarios()
 
 	for(Funcionario *f : funcionarios)
 	{
-		f->imprime_dados(0);
+		f->imprime_dados();
 	}
 	
 	cout << endl << "Pressione enter para voltar...";

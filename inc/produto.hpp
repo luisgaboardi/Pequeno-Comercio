@@ -35,6 +35,7 @@ class Produto
 		bool noEstoque();
 		void imprime_dados();
 		void imprime_dados(int x);
+        void imprime_historico(int qtd);
 };
 
 
