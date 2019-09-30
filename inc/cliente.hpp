@@ -9,8 +9,6 @@
 class Cliente : public Pessoa
 {
 	private:
-		//vector<Produto*> historico;
-		//Carrinho *carrinho;
 		bool socio;
 	
 	public:
@@ -25,8 +23,8 @@ class Cliente : public Pessoa
 		void set_socio(bool socio);
 		string eh_socio();
     
-        void arruma_Historico(vector<string> categoria, int qtd);
-        void recomendacao();
+        void historico_categoria(vector<string> categoria, int qtd);
+        void recomendacao(vector<Produto *> produtos);
 		void imprime_dados();
 
 };

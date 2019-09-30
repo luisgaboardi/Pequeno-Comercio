@@ -2,7 +2,6 @@
 #define CARRINHO_HPP_
 
 #include "produto.hpp"
-//#include "cliente.hpp"
 
 class Carrinho
 {

@@ -12,8 +12,7 @@ float Carrinho::get_valorTotal(){
 }
 
 void Carrinho::set_valorTotal(float valorTotal){
-	if(valorTotal > 0.0)
-		this->valorTotal = valorTotal;
+	this->valorTotal = valorTotal;
 }
 
 void Carrinho::add_item(Produto *prod, int qtd, vector<Produto*> lista)
@@ -26,12 +25,11 @@ void Carrinho::add_item(Produto *prod, int qtd, vector<Produto*> lista)
 		if(p == prod){
 			p->set_quantidade(p->get_quantidade() - qtd);
 			break;
-			// Se cancelar comprar, reverter isso tudo
 		}
 	}
 	item.push_back(compra);
 
-	valorTotal += compra.second * compra.first->get_valor();
+	set_valorTotal(get_valorTotal() + (compra.second * compra.first->get_valor()));
 }
 
 int Carrinho::confere_carrinho(vector<pair<string, int> > &historico)
@@ -40,7 +38,7 @@ int Carrinho::confere_carrinho(vector<pair<string, int> > &historico)
 	
 	int flagPossivel = 1;
 	int unico = 0;
-	int i = 0;
+	int nProd = 0;
 	
 	for(pair<Produto *, int> p : item)
 	{
@@ -53,18 +51,18 @@ int Carrinho::confere_carrinho(vector<pair<string, int> > &historico)
 			cout << "O produto " << p.first->get_nome() << " não possui " << p.second << " unidades." << endl;
 			cout << "Unidades disponíveis: " << p.first->get_quantidade() + p.second << endl;
 		}
-		
-		i++;
+		nProd++;
 	}
 	if(flagPossivel == 0)
 	{
 		for(pair<Produto *, int> p : item)
 			p.first->set_quantidade(p.first->get_quantidade() + p.second);
-		while (historico.empty())
+		while (nProd > 0){
 			historico.pop_back();
-			
+			nProd--;
+		}
 	}
-	
+
 	return flagPossivel;
 }
 
@@ -83,10 +81,6 @@ void Carrinho::imprime_dados(bool socio)
 		if(socio){
 			set_valorTotal(get_valorTotal()*0.85);
 		}
-		set_valorTotal(0.0f);
-
 		cout << "Valor Total: R$ " << get_valorTotal() << endl;
-		
-		set_valorTotal(0.0f);
 	}
 }

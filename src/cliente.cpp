@@ -22,7 +22,7 @@ string Cliente::eh_socio(){
 		return "Não";
 }
 
-void Cliente::arruma_Historico(vector<string> categoria, int qtd)
+void Cliente::historico_categoria(vector<string> categoria, int qtd)
 {
 	int flag;
 	for(string s : categoria)
@@ -42,37 +42,65 @@ void Cliente::arruma_Historico(vector<string> categoria, int qtd)
 		if(flag == 1)
 			historico.push_back(make_pair(s,qtd));
 	}
-	
-	// cout << "Vector histórico:" << endl << endl;
-	
-	// for(pair<string, int> h : historico)
-	// {
-	// 	cout << "Categoria: " << h.first << endl;
-	// 	cout << "Quantidade: " << h.second << endl;
-	// 	cout << "----------------------" << endl;
-	// }
-	// getchar();
 }
 
 bool sortbysec(const pair<string,int> &a, const pair<string,int> &b)
 {
-    return (a.second < b.second);
+    return (a.second > b.second);
 	
 }
 
-void Cliente::recomendacao()
-{
-    sort(historico.begin(), historico.end(), sortbysec);
-    
-    cout << "Vector sorteado:" << endl << endl;
-	
-	for(pair<string, int> h : historico)
+void Cliente::recomendacao(vector<Produto *> produtos)
+{	
+	int max = 1;
+
+	cout << "[Recomendação]" << endl << endl;
+	if(!historico.empty())
 	{
-		cout << "Categoria: " << h.first << endl;
-		cout << "Quantidade: " << h.second << endl;
-		cout << "----------------------" << endl;
+		sort(historico.begin(), historico.end(), sortbysec);
+
+		for(pair<string, int> h : historico) // Passa por todas as categorias do histórico do cliente
+		{
+			for(Produto *p : produtos) // Passa por todos os produtos da loja
+			{
+				for(string cat : p->get_categoria()) // Passa por todas as categorias do produto
+				{
+					if(h.first == cat) // Compara categoria do historico com as dos produtos
+					{
+						p->imprime_dados();
+						max++;
+						if(max == 10)
+							return;
+					}
+				}
+			} 	 
+		}
+
+		if(max < 10)
+		{
+			for(pair<string, int> h : historico) // Passa por todas as categorias do histórico do cliente
+			{
+				for(Produto *p : produtos) // Passa por todos os produtos da loja
+				{
+					for(string cat : p->get_categoria()) // Passa por todas as categorias do produto
+					{
+						if(h.first != cat) // Compara categoria do historico com as dos produtos
+						{
+							p->imprime_dados();
+							max++;
+							if(max == 10)
+								return;
+						}
+					}
+				} 	 
+			}
+		}
 	}
-	getchar();
+	else
+	{
+		cout << "Não foi possível gerar uma recomendação." << endl;
+		cout << "O cliente " << get_nome() << " ainda não realizou nenhuma compra." << endl << endl;
+	}
 }
 
 void Cliente::imprime_dados()
@@ -82,5 +110,5 @@ void Cliente::imprime_dados()
 	cout << "Email: " << get_email() << endl;
 	cout << "Sócio: " << eh_socio() << endl;
 
-	cout << "-----------------------" << endl;
+	cout << "------------------------------" << endl;
 }

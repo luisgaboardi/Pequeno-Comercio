@@ -1,6 +1,6 @@
 #include "carrinho.hpp"
-#include "cliente.hpp"
 #include "loja.hpp"
+#include "cliente.hpp"
 #include "funcionario.hpp"
 #include "produto.hpp"
 
@@ -62,6 +62,7 @@ int main()
 	
 	delete loja;
 	
+	system("clear");
 	return 0;
 }
 
@@ -115,6 +116,7 @@ void modoVenda(Loja *loja, long long int cpf)
 	int qtd;
 	float valorEntregue;
 	int flagVazio = 0;
+
 	system("clear");
 	
 	if(cpf == 0)
@@ -159,7 +161,7 @@ void modoVenda(Loja *loja, long long int cpf)
 					cout << "Quantidade: ";
 					qtd = getInput<int>();
 					c->carrinho->add_item(prod, qtd, loja->produtos);
-					c->arruma_Historico(prod->get_categoria(), qtd);
+					c->historico_categoria(prod->get_categoria(), qtd);
 				} else {
 					escolha = "s";
 					continue;
@@ -199,17 +201,20 @@ void modoVenda(Loja *loja, long long int cpf)
 				cout << "Troco: R$ " << valorEntregue - c->carrinho->get_valorTotal() << endl << endl;
 				cout << "----------------------\nVenda realizada.";
 			}
+			else
+			{
+				getchar();
+			}
 			
 			while (!c->carrinho->item.empty())
 			{
 				c->carrinho->item.pop_back();
 			}
 			
-			c->carrinho->set_valorTotal(0.0f);
+			c->carrinho->set_valorTotal(0);
 
 			cout << endl << "Pressione enter para retornar ao menu...";
 			getchar();
-			// getchar();
 		}
 		
 	} else {
@@ -247,22 +252,13 @@ void modoRecomendacao(Loja *loja)
 	c = loja->confere_cliente(cpf);
 	
 	if(c)
-	{
-		// cout << "[Recomendação]" << endl << endl;
-
-		// for(unsigned int i = 0; i < c->historico.size(); i++)
-		// {
-		// 	cout << "Categoria: " << c->historico[i].first << endl;
-		// 	cout << "Quantidade: " << c->historico[i].second << endl;
-		// 	cout << "----------------------" << endl;
-		// }
-		
-		c->recomendacao();
+	{	
+		c->recomendacao(loja->produtos);
 	}
 	else
 	{
 		cout << "[Registro]" << endl;
-		cout << endl << "Cliente não encontrado." << endl;
+		cout << endl << "Cliente não encontrado." << endl << endl;
 	}
 	
 	cout << "Pressione Enter para retornar ao menu..." << endl;

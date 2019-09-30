@@ -21,5 +21,5 @@ void Funcionario::imprime_dados()
 	cout << "Nome: " << get_nome() << endl;
 	cout << "CPF: " << get_cpf() << endl;
 	cout << "Email: " << get_email() << endl;
-	cout << "-----------------------------" << endl;
+	cout << "---------------------------------------" << endl;
 }
