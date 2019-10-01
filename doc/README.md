@@ -1,9 +1,9 @@
-#Modo de usar
+##Modo de usar
 
-## No terminal, para compilar digite
+### No terminal, para compilar digite
 
-### make
+#### make
 
-## Depois, para executar
+### Depois, para executar
 
-### make run
+#### make run
