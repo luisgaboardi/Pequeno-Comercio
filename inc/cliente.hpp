@@ -24,7 +24,6 @@ class Cliente : public Pessoa
 		string eh_socio();
     
         void historico_categoria(vector<string> categoria, int qtd);
-        void recomendacao(vector<Produto *> produtos);
 		void imprime_dados();
 
 };

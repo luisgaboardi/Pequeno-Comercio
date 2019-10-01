@@ -44,65 +44,6 @@ void Cliente::historico_categoria(vector<string> categoria, int qtd)
 	}
 }
 
-bool sortbysec(const pair<string,int> &a, const pair<string,int> &b)
-{
-    return (a.second > b.second);
-	
-}
-
-void Cliente::recomendacao(vector<Produto *> produtos)
-{	
-	int max = 1;
-
-	cout << "[Recomendação]" << endl << endl;
-	if(!historico.empty())
-	{
-		sort(historico.begin(), historico.end(), sortbysec);
-
-		for(pair<string, int> h : historico) // Passa por todas as categorias do histórico do cliente
-		{
-			for(Produto *p : produtos) // Passa por todos os produtos da loja
-			{
-				for(string cat : p->get_categoria()) // Passa por todas as categorias do produto
-				{
-					if(h.first == cat) // Compara categoria do historico com as dos produtos
-					{
-						p->imprime_dados();
-						max++;
-						if(max == 10)
-							return;
-					}
-				}
-			} 	 
-		}
-
-		if(max < 10)
-		{
-			for(pair<string, int> h : historico) // Passa por todas as categorias do histórico do cliente
-			{
-				for(Produto *p : produtos) // Passa por todos os produtos da loja
-				{
-					for(string cat : p->get_categoria()) // Passa por todas as categorias do produto
-					{
-						if(h.first != cat) // Compara categoria do historico com as dos produtos
-						{
-							p->imprime_dados();
-							max++;
-							if(max == 10)
-								return;
-						}
-					}
-				} 	 
-			}
-		}
-	}
-	else
-	{
-		cout << "Não foi possível gerar uma recomendação." << endl;
-		cout << "O cliente " << get_nome() << " ainda não realizou nenhuma compra." << endl << endl;
-	}
-}
-
 void Cliente::imprime_dados()
 {
 	cout << "Nome: " << get_nome() << endl;
@@ -110,5 +51,5 @@ void Cliente::imprime_dados()
 	cout << "Email: " << get_email() << endl;
 	cout << "Sócio: " << eh_socio() << endl;
 
-	cout << "------------------------------" << endl;
+	cout << "--------------------------" << endl;
 }

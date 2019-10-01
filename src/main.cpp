@@ -253,7 +253,7 @@ void modoRecomendacao(Loja *loja)
 	
 	if(c)
 	{	
-		c->recomendacao(loja->produtos);
+		loja->recomendacao(c);
 	}
 	else
 	{

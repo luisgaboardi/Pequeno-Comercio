@@ -26,6 +26,8 @@ class Loja
 		void imprime_clientes();
 		void imprime_funcionarios();
 		Produto* checa_produto(string nome);
+		void recomendacao(Cliente *c);
+
 };
 
 

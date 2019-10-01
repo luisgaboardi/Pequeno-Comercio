@@ -19,6 +19,8 @@ class Produto
 		Produto(string nome, int quantidade, float valor);
 		
 		~Produto();
+
+		bool jaRecomendei = false;
 				
 		string get_nome();
 		void set_nome(string nome);

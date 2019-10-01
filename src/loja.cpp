@@ -202,3 +202,69 @@ Produto* Loja::checa_produto(string nome)
 	//cout << "Não existe um produto com esse nome." << endl;
 	return NULL;
 }
+
+bool sortbysec(const pair<string,int> &a, const pair<string,int> &b)
+{
+    return (a.second > b.second);
+	
+}
+
+void Loja::recomendacao(Cliente *c)
+{	
+	int max = 1;
+
+	for(Produto *p : produtos)
+	{
+		p->jaRecomendei = false;
+	}
+
+	cout << "[Recomendação]" << endl << endl;
+	if(!c->historico.empty())
+	{
+		sort(c->historico.begin(), c->historico.end(), sortbysec);
+
+		for(pair<string, int> h : c->historico) // Passa por todas as categorias do histórico do cliente
+		{
+			for(Produto *p : produtos) // Passa por todos os produtos da loja
+			{
+				for(string cat : p->get_categoria()) // Passa por todas as categorias do produto
+				{
+					if(h.first == cat && p->jaRecomendei == false) // Compara categoria do historico com as dos produtos
+					{
+						p->imprime_dados();
+						p->jaRecomendei = true;
+						max++;
+						if(max == 10)
+							return;
+					}
+				}
+			} 	 
+		}
+
+		if(max < 11)
+		{
+			for(pair<string, int> h : c->historico)
+			{
+				for(Produto *p : produtos)
+				{
+					for(string cat : p->get_categoria())
+					{
+						if(h.first != cat && p->jaRecomendei == false)
+						{
+							p->imprime_dados();
+							max++;
+							p->jaRecomendei = true;
+							if(max == 10)
+								return;
+						}
+					}
+				} 	 
+			}
+		}
+	}
+	else
+	{
+		cout << "Não foi possível gerar uma recomendação." << endl;
+		cout << "O cliente " << c->get_nome() << " ainda não realizou nenhuma compra." << endl << endl;
+	}
+}
