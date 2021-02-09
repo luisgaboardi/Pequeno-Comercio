@@ -1,4 +1,4 @@
-# EP1 - OO 2019.2 (UnB - Gama)
+# Pequeno Comércio
 
 ## Descrição
 
@@ -46,9 +46,3 @@ Neste modo, também há alguns pontos a serem considerados:
     - Até 10 produtos;
     - Ordenados de acordo com o grau de recomendação (mais recomendados primeiro, menos recomendados por último);
     - Caso o grau de recomendação seja o mesmo, o critério de ordenação deve obedecer à ordem lexicográfica;
-
-## Orientações
-
-Quando finalizado, o projeto deverá conter um arquivo, na pasta `docs`, contendo instruções de execução (comandos, menus, etc) e a lista de dependências (bibliotecas ou pacotes necessários para se executar o software).
-
-Existe um material de apoio na [wiki do repositório](https://gitlab.com/oofga/eps/eps_2019_2/ep1/wikis/Home) contendo orientações técnicas relevantes para o desenvolvimento deste projeto.
